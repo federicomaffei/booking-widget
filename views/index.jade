@@ -1,2 +1,54 @@
+extends layout
+
 block content
     h1 Book
+    form(name='book', action='/book', method='post')
+        div#book-by
+            label Book by:
+            select(name='timeselect')
+                option(value='07:00 AM') 07:00 AM
+                option(value='07:30 AM') 07:30 AM
+                option(value='08:00 AM') 08:00 AM
+                option(value='08:30 AM') 08:30 AM
+                option(value='09:00 AM') 09:00 AM
+                option(value='09:30 AM') 09:30 AM
+                option(value='10:00 AM') 10:00 AM
+                option(value='10:30 AM') 10:30 AM
+                option(value='11:00 AM') 11:00 AM
+                option(value='11:30 AM') 11:30 AM
+                option(value='12:00 AM') 12:00 AM
+                option(value='12:30 AM') 12:30 AM
+                option(value='01:00 PM') 01:00 PM
+                option(value='01:30 PM') 01:30 PM
+                option(value='02:00 PM') 02:00 PM
+                option(value='02:30 PM') 02:30 PM
+                option(value='03:00 PM') 03:00 PM
+                option(value='03:30 PM') 03:30 PM
+                option(value='04:00 PM') 04:00 PM
+                option(value='04:30 PM') 04:30 PM
+                option(value='05:00 PM') 05:00 PM
+                option(value='05:30 PM') 05:30 PM
+                option(value='06:00 PM') 06:00 PM
+                option(value='06:30 PM') 06:30 PM
+                option(value='07:00 PM') 07:00 PM
+                option(value='07:30 PM') 07:30 PM
+                option(value='08:00 PM') 08:00 PM
+                option(value='08:30 PM') 08:30 PM
+                option(value='09:00 PM') 09:00 PM
+                option(value='09:30 PM') 09:30 PM
+                option(value='10:00 PM') 10:00 PM
+        div#party-size
+            label Party size:
+            select(name='partysize')
+                option(value=1) 1
+                option(value=2) 2
+                option(value=3) 3
+                option(value=4) 4
+                option(value=5) 5
+                option(value=6) 6
+        div#booking-date
+            label Date:
+            input(type='text', name='datepicker', id='datepicker')
+        div#submit-button
+            input(type="submit", value="Check Availability")
+
