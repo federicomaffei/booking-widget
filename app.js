@@ -1,10 +1,25 @@
+'use strict'
+
 var express = require('express')
-var routes  = require('./src/routes');
-var app     = express()
+var app = express()
 
 app.set('view engine', 'jade');
 
-app.get('/', routes.index)
+var bodyParser = require('body-parser')
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+
+app.get('/', function(req, res){
+  res.render('index');
+})
+
+app.post('/book', function(req, res){
+	console.log(req.body);
+	res.render('index');
+})
 
 var server = app.listen(process.env.DEV_PORT || 3000, function() {
 
