@@ -2,53 +2,57 @@ extends layout
 
 block content
     h1 Book
-    form(name='search', action='/', method='post')
+    form(name='search', action='/search', method='post')
         div#book-by
-            label Book by:
-            select(name='timeselect')
-                option(value='T07:00') 07:00 AM
-                option(value='T07:30') 07:30 AM
-                option(value='T08:00') 08:00 AM
-                option(value='T08:30') 08:30 AM
-                option(value='T09:00') 09:00 AM
-                option(value='T09:30') 09:30 AM
-                option(value='T10:00') 10:00 AM
-                option(value='T10:30') 10:30 AM
-                option(value='T11:00') 11:00 AM
-                option(value='T11:30') 11:30 AM
-                option(value='T12:00') 12:00 AM
-                option(value='T12:30') 12:30 AM
-                option(value='T13:00') 01:00 PM
-                option(value='T13:30') 01:30 PM
-                option(value='T14:00') 02:00 PM
-                option(value='T14:30') 02:30 PM
-                option(value='T15:00') 03:00 PM
-                option(value='T15:30') 03:30 PM
-                option(value='T16:00') 04:00 PM
-                option(value='T16:30') 04:30 PM
-                option(value='T17:00') 05:00 PM
-                option(value='T17:30') 05:30 PM
-                option(value='T18:00') 06:00 PM
-                option(value='T18:30') 06:30 PM
-                option(value='T19:00') 07:00 PM
-                option(value='T19:30') 07:30 PM
-                option(value='T20:00') 08:00 PM
-                option(value='T20:30') 08:30 PM
-                option(value='T21:00') 09:00 PM
-                option(value='T21:30') 09:30 PM
-                option(value='T22:00') 10:00 PM
+            div.form-element
+                label Book by:
+                select(name='timeselect')
+                    option(value='T07:00') 07:00 AM
+                    option(value='T07:30') 07:30 AM
+                    option(value='T08:00') 08:00 AM
+                    option(value='T08:30') 08:30 AM
+                    option(value='T09:00') 09:00 AM
+                    option(value='T09:30') 09:30 AM
+                    option(value='T10:00') 10:00 AM
+                    option(value='T10:30') 10:30 AM
+                    option(value='T11:00') 11:00 AM
+                    option(value='T11:30') 11:30 AM
+                    option(value='T12:00') 12:00 AM
+                    option(value='T12:30') 12:30 AM
+                    option(value='T13:00') 01:00 PM
+                    option(value='T13:30') 01:30 PM
+                    option(value='T14:00') 02:00 PM
+                    option(value='T14:30') 02:30 PM
+                    option(value='T15:00') 03:00 PM
+                    option(value='T15:30') 03:30 PM
+                    option(value='T16:00') 04:00 PM
+                    option(value='T16:30') 04:30 PM
+                    option(value='T17:00') 05:00 PM
+                    option(value='T17:30') 05:30 PM
+                    option(value='T18:00') 06:00 PM
+                    option(value='T18:30') 06:30 PM
+                    option(value='T19:00') 07:00 PM
+                    option(value='T19:30') 07:30 PM
+                    option(value='T20:00') 08:00 PM
+                    option(value='T20:30') 08:30 PM
+                    option(value='T21:00') 09:00 PM
+                    option(value='T21:30') 09:30 PM
+                    option(value='T22:00') 10:00 PM
         div#party-size
-            label Party size:
-            select(name='partysize')
-                option(value=1) 1
-                option(value=2) 2
-                option(value=3) 3
-                option(value=4) 4
-                option(value=5) 5
-                option(value=6) 6
+            div.form-element
+                label Party size:
+                select(name='partysize')
+                    option(value=1) 1
+                    option(value=2) 2
+                    option(value=3) 3
+                    option(value=4) 4
+                    option(value=5) 5
+                    option(value=6) 6
         div#booking-date
-            label Date:
-            input(type='text', name='date', id='datepicker')
+            div.form-element
+                label Date:
+                input(type='text', name='date', id='datepicker')
         div#submit-button
-            input(type="submit", value="Check Availability")
+            div.form-element
+                input(type="submit", value="Check Availability")
 

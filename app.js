@@ -16,8 +16,6 @@ var options = {
     headers: headers
 };
 
-var results = [];
-
 
 app.set('view engine', 'jade');
 
@@ -31,21 +29,21 @@ app.get('/', function(req, res){
   res.render('index');
 });
 
-app.post('/', function(req, res){
+app.post('/search', function(req, res){
     options.path = '/v1/restaurants/1/availability?dateTime=' + req.body.date + req.body.timeselect + '&partySize=' + req.body.partysize;
     options.method = 'GET';
     var request = https.request(options, function(availability){
         availability.setEncoding('utf8');
         availability.on('data', function (chunk) {
-            results = JSON.parse(chunk).results;
+            var results = JSON.parse(chunk).results;
             console.log(results);
+            res.render('search', {results: results});
         });
     });
     request.end();
     request.on('error', function(e) {
         console.error(e);
     });
-	res.render('index');
 });
 
 var server = app.listen(process.env.DEV_PORT || 3000, function() {
