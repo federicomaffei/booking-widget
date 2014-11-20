@@ -3,14 +3,15 @@
 var express = require('express');
 var https = require('https');
 var app = express();
+app.locals.moment = require('moment');
 var bodyParser = require('body-parser');
 
 var headers = {
-    'Authorization': 'token ' + process.env.API_DEV_KEY
+    'Authorization': 'token ' + process.env.WIDGET_API_KEY
 };
 
 var options = {
-    hostname: 'sandbox-api.opentable.com',
+    hostname: 'sandbox-api.opentable.co.uk',
     path: '',
     method: '',
     headers: headers
@@ -33,10 +34,13 @@ app.post('/search', function(req, res){
     options.path = '/v1/restaurants/1/availability?dateTime=' + req.body.date + req.body.timeselect + '&partySize=' + req.body.partysize;
     options.method = 'GET';
     var request = https.request(options, function(availability){
+        var data = '';
         availability.setEncoding('utf8');
         availability.on('data', function (chunk) {
-            var results = JSON.parse(chunk).results;
-            console.log(results);
+            data += chunk;
+        });
+        availability.on('end', function() {
+            var results = JSON.parse(data).results;
             res.render('search', {results: results});
         });
     });

@@ -2,6 +2,9 @@ extends layout
 
 block content
     h1 Book
-        ul
+    ul
         each item in results
-            li #{item.dateTime}
+            li #{moment(item.dateTime).format('HH:mm')}
+                ul
+                    each offer in item.offers
+                        li #{offer.name}
