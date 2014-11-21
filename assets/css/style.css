@@ -6,6 +6,14 @@ label {
    margin-right: 20px;
 }
 
+#home-logo {
+    text-decoration: none;
+}
+
+a:visited {
+    color: black;
+}
+
 .form-element {
     margin-top: 10px;
     margin-bottom: 10px;
@@ -13,4 +21,24 @@ label {
 
 div.ui-datepicker{
     font-size:10px
+}
+
+form.provision-form {
+    margin-bottom: 20px;
+}
+
+li.offer-line {
+    font-size: 12px;
+}
+
+#offer-list li {
+    list-style-type: none;
+}
+
+#availability-list li {
+    list-style-type: none;
+}
+
+.available-hour {
+    font-size: 12px;
 }
