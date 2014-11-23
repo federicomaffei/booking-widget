@@ -35,6 +35,10 @@ li.offer-line {
     list-style-type: none;
 }
 
+.offer-popup {
+    display: none;
+}
+
 #availability-list li {
     list-style-type: none;
 }

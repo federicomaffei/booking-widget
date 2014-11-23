@@ -1,14 +1,16 @@
 extends layout
 
 block content
-    h2 Offers for #{results[0].partySize} people on #{moment(results[0].dateTime).format('dddd Do MMMM')}
+    h2 Offers for #{results[0].partySize} people on #{moment(results[0].dateTime).format('dddd Do MMMM')}:
     ul#availability-list
-        each item in results
+        each item, index in results
+            li.offer-line
+                button(class='available-hour-button', data-index='#{index}') Book at #{moment(item.dateTime).format('HH:mm')}
             form.provision-form(name='provision', action='/provision_reservation', method='post')
-                li.offer-line
-                    button.available-hour #{moment(item.dateTime).format('HH:mm')}
+                div(class='offer-popup', id='offer-popup-#{index}')
                     input(type="hidden", name="dateTime", value=item.dateTime)
                     input(type="hidden", name="partySize", value=item.partySize)
                     li.offer-line Offers available:
                     each offer in item.offers
                         li.offer-line #{offer.name}
+                    button Book!
