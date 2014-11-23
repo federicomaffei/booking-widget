@@ -24,6 +24,10 @@
   "dependencies": {
     "body-parser": "^1.9.2",
     "express": "^4.10.2",
+    "mocha": "^2.0.1",
     "moment": "^2.8.4"
+  },
+  "devDependencies": {
+    "hippie": "^0.3.0"
   }
 }

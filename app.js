@@ -106,3 +106,5 @@ var server = app.listen(process.env.DEV_PORT || 3000, function() {
     var port = server.address().port;
     console.log('Server started at http://%s:%s', host, port);
 });
+
+module.exports = server;
