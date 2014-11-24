@@ -1,21 +1,18 @@
 'use strict'
 
-var express = require('express');
-var https = require('https');
-var app = express();
-app.locals.moment = require('moment');
-var bodyParser = require('body-parser');
-var querystring = require('querystring');
-
-var options = {
+var express = require('express'),
+    https = require('https'),
+    app = express(),
+    moment = require('moment'),
+    bodyParser = require('body-parser'),
+    querystring = require('querystring'),
+    timeCreator = require('./src/utilities/timeCreator'),
+    options = {
     hostname: 'sandbox-api.opentable.co.uk',
-    path: '',
-    method: '',
     headers: {
         'Authorization': 'token ' + process.env.WIDGET_API_KEY
     }
 };
-
 
 app.set('view engine', 'jade');
 
@@ -26,7 +23,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.get('/', function(req, res){
-  res.render('index');
+  res.render('index', {timeSlots: timeCreator.createSlots()});
 });
 
 app.post('/search_availability', function(req, res){
