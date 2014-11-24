@@ -1,22 +1,27 @@
-var server = require('../app'),
-    assert = require('assert'),
-    http = require('http');
+describe('server', function() {
 
-describe('server', function () {
-    before(function () {
-        server.listen(8000);
-    });
+    var request = require('supertest'),
+        app = require('../app');
 
-    describe('/', function () {
-        it('should return 200', function (done) {
-            http.get('http://localhost:8000', function (res) {
-                assert.equal(200, res.statusCode);
-                done();
-            });
+    describe('getting /', function() {
+        it('should return 200', function(done) {
+            request(app)
+                .get('/')
+                .expect(200, done);
         });
     });
 
-    after(function () {
-        server.close();
+    describe('posting to search availability', function(){
+        it('should return 200', function(done){
+            request(app)
+                .post('/search_availability')
+                .send({
+                    timeselect:'T07:00',
+                    partysize:'1',
+                    date:'2014-11-27'
+                })
+                .set('Authorization', 'token ' + process.env.WIDGET_API_KEY)
+                .expect(200, done);
+        })
     });
 });
