@@ -4,9 +4,18 @@ describe('time creator', function(){
         moment = require('moment');
 
     describe('given the date of today', function(){
-
-        it ('should start from a minTime which depends on the current time if same day', function(){
+        it('should start from a minTime which depends on the current time if same day', function(){
             expect(creator.setStart(moment())).to.equal(parseInt(moment().format('H')));
+        });
+    });
+
+    describe('AM/PM conversion', function(){
+        it('should be able to convert a time string in AM format', function(){
+            expect(creator.convertTime('T07:00')).to.equal('07:00 AM');
+        });
+
+        it('should be able to convert a time string in PM format', function(){
+            expect(creator.convertTime('T23:00')).to.equal('11:00 PM');
         });
     });
 

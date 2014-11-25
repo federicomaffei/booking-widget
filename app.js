@@ -3,16 +3,18 @@
 var express = require('express'),
     https = require('https'),
     app = express(),
-    moment = require('moment'),
     bodyParser = require('body-parser'),
     querystring = require('querystring'),
     timeCreator = require('./src/utilities/timeCreator'),
     options = {
-    hostname: 'sandbox-api.opentable.co.uk',
-    headers: {
-        'Authorization': 'token ' + process.env.WIDGET_API_KEY
+        hostname: 'sandbox-api.opentable.co.uk',
+        headers: {
+            'Authorization': 'token ' + process.env.WIDGET_API_KEY
+        }
     }
-};
+
+app.locals.moment = require('moment');
+app.locals.timeCreator = require('./src/utilities/timeCreator');
 
 app.set('view engine', 'jade');
 

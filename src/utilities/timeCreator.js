@@ -9,6 +9,14 @@ module.exports.setStart = function(date) {
     else return 7;
 };
 
+module.exports.convertTime = function(time) {
+    var hour = parseInt(time.substring(1,3));
+    if(parseInt(hour) < 13){
+        return time.substring(1,6) + ' AM';
+    }
+    else return (hour - 12).toString() + time.substring(3,6) + ' PM';
+};
+
 module.exports.createSlots = function(minTime, maxTime) {
     if(typeof(minTime)==='undefined') minTime = 7;
     if(typeof(maxTime)==='undefined') maxTime = 22;
