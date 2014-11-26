@@ -24,16 +24,32 @@ describe('server', function() {
                 .set('Authorization', 'token ' + process.env.WIDGET_API_KEY)
                 .expect(200, done);
         });
-        it('should return 400 with bad request', function(done){
+    });
+
+    describe('posting to provisioning reservation', function(){
+        it('should return 200 with correct request', function(done){
             request(app)
-                .post('/search_availability')
+                .post('/provision_reservation')
                 .send({
-                    timeselect:'wrong',
-                    partysize:'1',
-                    date:'2014-11-27'
+                    dateTime: '2014-11-28T09:30',
+                    partySize: 1
                 })
                 .set('Authorization', 'token ' + process.env.WIDGET_API_KEY)
                 .expect(200, done);
-        })
+        });
+    });
+    describe('posting to confirm reservation', function(){
+        it('should return 200 with correct request', function(done){
+            request(app)
+                .post('/confirm_reservation')
+                .send({
+                    firstName: "Adam",
+                    lastName: "West",
+                    emailAddress: "adam.west@example.com",
+                    phoneNumber: "07981234567"
+                })
+                .set('Authorization', 'token ' + process.env.WIDGET_API_KEY)
+                .expect(200, done);
+        });
     });
 });

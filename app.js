@@ -4,7 +4,7 @@ var express = require('express'),
     https = require('https'),
     app = express(),
     bodyParser = require('body-parser'),
-    querystring = require('querystring'),
+    request = require('request'),
     timeCreator = require('./src/utilities/timeCreator'),
     options = {
         hostname: 'sandbox-api.opentable.co.uk',
@@ -29,74 +29,73 @@ app.get('/', function(req, res){
 });
 
 app.post('/search_availability', function(req, res){
-    options.path = '/v1/restaurants/1/availability?dateTime=' + req.body.date + req.body.timeselect + '&partySize=' + req.body.partysize;
-    options.method = 'GET';
-    var request = https.request(options, function(availability){
-        var data = '';
-        availability.setEncoding('utf8');
-        availability.on('data', function (chunk) {
-            data += chunk;
-        });
-        availability.on('end', function() {
-            var results = JSON.parse(data).results;
-            res.render('search-availability', {results: results});
-        });
-    });
-    request.end();
-    request.on('error', function(e) {
-        console.error(e);
+    request({
+        uri: 'https://sandbox-api.opentable.co.uk/v1/restaurants/1/availability?dateTime=' + req.body.date + req.body.timeselect + '&partySize=' + req.body.partysize,
+        method: 'GET',
+        headers: {
+            'Authorization': 'token ' + process.env.WIDGET_API_KEY
+        },
+        json: true
+    }, function(error, response, body){
+        res.render('search-availability', {results: body.results});
     });
 });
 
 app.post('/provision_reservation', function(req, res){
-    options.path = '/v1/restaurants/1/reservations';
-    options.method = 'POST';
     req.body.partySize = parseInt(req.body.partySize);
-    var query = JSON.stringify(req.body);
-    options.headers['Content-Type'] = 'application/json';
-    options.headers['Content-Length'] = query.length;
-    var request = https.request(options, function(provision){
-        var data = '';
-        provision.setEncoding('utf8');
-        provision.on('data', function(chunk){
-            data += chunk;
-        });
-        provision.on('end', function(){
-            var reservationToken = JSON.parse(data).reservationToken;
-            res.render('provision-reservation', {reservationToken: reservationToken});
-        });
-    });
-
-    request.write(query);
-    request.end();
-    request.on('error', function(e) {
-        console.error(e);
+    console.log(req.body);
+    request({
+        uri: 'https://sandbox-api.opentable.co.uk/v1/restaurants/1/reservations',
+        method: 'POST',
+        headers: {
+            'Authorization': 'token ' + process.env.WIDGET_API_KEY,
+            'Content-Type': 'application/json'
+        },
+        form: req.body,
+        json: true
+    }, function(error, response, body){
+        console.log(body);
+        console.log(body.reservationToken);
+        res.render('provision-reservation', {reservationToken: body.reservationToken});
     });
 });
 
 app.post('/confirm_reservation', function(req, res){
-    options.path = '/v1/restaurants/1/reservations/provisional/' + req.body.reservationToken + '/confirm';
-    options.method = 'POST';
-    var query = JSON.stringify(req.body);
-    options.headers['Content-Type'] = 'application/json';
-    options.headers['Content-Length'] = query.length;
-    var request = https.request(options, function(confirmation){
-        var data = '';
-        confirmation.setEncoding('utf8');
-        confirmation.on('data', function(chunk){
-            data += chunk;
-        });
-        confirmation.on('end', function(){
-            var confirmationMessage = JSON.parse(data).message;
-            res.render('confirm-reservation', {confirmationMessage: confirmationMessage});
-        });
-    });
-
-    request.write(query);
-    request.end();
-    request.on('error', function(e) {
-        console.error(e);
-    });
+    console.log(req.body);
+    request({
+        uri: 'https://sandbox-api.opentable.co.uk/v1/restaurants/1/reservations/provisional/' + req.body.reservationToken + '/confirm',
+        method: 'POST',
+        headers: {
+            'Authorization': 'token ' + process.env.WIDGET_API_KEY,
+            'Content-Type': 'application/json'
+        },
+        form: req.body
+    }, function(error, response, body){
+        console.log(body);
+        res.render('confirm-reservation', {confirmationMessage: body.message});
+    })
+    //options.path = '/v1/restaurants/1/reservations/provisional/' + req.body.reservationToken + '/confirm';
+    //options.method = 'POST';
+    //var query = JSON.stringify(req.body);
+    //options.headers['Content-Type'] = 'application/json';
+    //options.headers['Content-Length'] = query.length;
+    //var request = https.request(options, function(confirmation){
+    //    var data = '';
+    //    confirmation.setEncoding('utf8');
+    //    confirmation.on('data', function(chunk){
+    //        data += chunk;
+    //    });
+    //    confirmation.on('end', function(){
+    //        var confirmationMessage = JSON.parse(data).message;
+    //        res.render('confirm-reservation', {confirmationMessage: confirmationMessage});
+    //    });
+    //});
+    //
+    //request.write(query);
+    //request.end();
+    //request.on('error', function(e) {
+    //    console.error(e);
+    //});
 
 });
 
