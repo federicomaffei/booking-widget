@@ -8,8 +8,8 @@ block content
                 button(class='available-hour-button', data-index='#{index}') Book at #{moment(item.dateTime).format('HH:mm')}
             form.provision-form(name='provision', action='/provision_reservation', method='post')
                 div(class='offer-popup', id='offer-popup-#{index}')
-                    input(type="hidden", name="dateTime", value=item.dateTime)
-                    input(type="hidden", name="partySize", value=item.partySize)
+                    input(type="hidden", name="dateTime", value="#{item.dateTime}")
+                    input(type="hidden", name="partySize", value="#{item.partySize}")
                     li.offer-line Offers available:
                     each offer in item.offers
                         li.offer-line #{offer.name}
