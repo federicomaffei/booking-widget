@@ -41,7 +41,6 @@ app.post('/:restaurantId/search_availability', function(req, res){
 
 app.post('/:restaurantId/provision_reservation', function(req, res){
     req.body.partySize = parseInt(req.body.partySize);
-    console.log(req.body);
     request({
         uri: options.path + req.param('restaurantId') + '/reservations',
         method: 'POST',
@@ -55,7 +54,6 @@ app.post('/:restaurantId/provision_reservation', function(req, res){
 });
 
 app.post('/:restaurantId/confirm_reservation', function(req, res){
-    console.log(req.body);
     request({
         uri: options.path + req.param('restaurantId') + '/reservations/provisional/' + req.body.reservationToken + '/confirm',
         method: 'POST',
