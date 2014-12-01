@@ -1,7 +1,13 @@
 extends layout
 
 block content
-    form(name='search', action='/search_availability', method='post')
+    form(id='select-availability', name='search', method='post')
+        div#restaurant-selection
+            div.form-element
+                label Restaurant ID:
+                select(name='restaurantId')
+                    each id in [1,2,3,4,9,10,11]
+                        option(value=id)= id
         div#book-by
             div.form-element
                 label Book by:
@@ -12,12 +18,8 @@ block content
             div.form-element
                 label Party size:
                 select(name='partysize')
-                    option(value=1) 1
-                    option(value=2) 2
-                    option(value=3) 3
-                    option(value=4) 4
-                    option(value=5) 5
-                    option(value=6) 6
+                    each size in [1,2,3,4,5,6]
+                        option(value=size)= size
         div#booking-date
             div.form-element
                 label Date:

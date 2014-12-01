@@ -28,24 +28,24 @@ app.get('/', function(req, res){
   res.render('index', {timeSlots: timeCreator.createSlots()});
 });
 
-app.post('/search_availability', function(req, res){
+app.post('/:restaurantId/search_availability', function(req, res){
     request({
-        uri: 'https://sandbox-api.opentable.co.uk/v1/restaurants/1/availability?dateTime=' + req.body.date + req.body.timeselect + '&partySize=' + req.body.partysize,
+        uri: 'https://sandbox-api.opentable.co.uk/v1/restaurants/' + req.param('restaurantId') + '/availability?dateTime=' + req.body.date + req.body.timeselect + '&partySize=' + req.body.partysize,
         method: 'GET',
         headers: {
             'Authorization': 'token ' + process.env.WIDGET_API_KEY
         },
         json: true
     }, function(error, response, body){
-        res.render('search-availability', {results: body.results});
+        res.render('search-availability', {results: body.results, id:req.param('restaurantId')});
     });
 });
 
-app.post('/provision_reservation', function(req, res){
+app.post('/:restaurantId/provision_reservation', function(req, res){
     req.body.partySize = parseInt(req.body.partySize);
     console.log(req.body);
     request({
-        uri: 'https://sandbox-api.opentable.co.uk/v1/restaurants/1/reservations',
+        uri: 'https://sandbox-api.opentable.co.uk/v1/restaurants/' + req.param('restaurantId') + '/reservations',
         method: 'POST',
         headers: {
             'Authorization': 'token ' + process.env.WIDGET_API_KEY
@@ -53,16 +53,14 @@ app.post('/provision_reservation', function(req, res){
         body: req.body,
         json: true
     }, function(error, response, body){
-        console.log(body);
-        console.log(body.reservationToken);
-        res.render('provision-reservation', {reservationToken: body.reservationToken});
+        res.render('provision-reservation', {reservationToken: body.reservationToken, id:req.param('restaurantId')});
     });
 });
 
-app.post('/confirm_reservation', function(req, res){
+app.post('/:restaurantId/confirm_reservation', function(req, res){
     console.log(req.body);
     request({
-        uri: 'https://sandbox-api.opentable.co.uk/v1/restaurants/1/reservations/provisional/' + req.body.reservationToken + '/confirm',
+        uri: 'https://sandbox-api.opentable.co.uk/v1/restaurants/' + req.param('restaurantId') + '/reservations/provisional/' + req.body.reservationToken + '/confirm',
         method: 'POST',
         headers: {
             'Authorization': 'token ' + process.env.WIDGET_API_KEY
@@ -70,7 +68,6 @@ app.post('/confirm_reservation', function(req, res){
         body: req.body,
         json: true
     }, function(error, response, body){
-        console.log(body);
         res.render('confirm-reservation', {confirmationMessage: body.message});
     })
 });
