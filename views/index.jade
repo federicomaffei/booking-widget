@@ -6,18 +6,18 @@ block content
             div.form-element
                 label Restaurant ID:
                 select(name='restaurantId')
-                    each id in [1,2,3,4,9,10,11]
+                    each id in [1,2,3,9,10,11]
                         option(value=id)= id
         div#book-by
             div.form-element
                 label Book by:
-                select(name='timeselect')
+                select(name='timeSelect')
                     each item in timeSlots
                         option(value=item) #{timeCreator.convertTime(item)}
         div#party-size
             div.form-element
                 label Party size:
-                select(name='partysize')
+                select(name='partySize')
                     each size in [1,2,3,4,5,6]
                         option(value=size)= size
         div#booking-date

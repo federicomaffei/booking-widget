@@ -15,10 +15,10 @@ describe('server', function() {
     describe('posting to search availability', function(){
         it('should return 200 with correct request', function(done){
             request(app)
-                .post('/search_availability')
+                .post('/1/search_availability')
                 .send({
-                    timeselect:'T07:00',
-                    partysize:'1',
+                    timeSelect:'T07:00',
+                    partySize:'1',
                     date:'2014-11-27'
                 })
                 .set('Authorization', 'token ' + process.env.WIDGET_API_KEY)
@@ -29,7 +29,7 @@ describe('server', function() {
     describe('posting to provisioning reservation', function(){
         it('should return 200 with correct request', function(done){
             request(app)
-                .post('/provision_reservation')
+                .post('/1/provision_reservation')
                 .send({
                     dateTime: '2014-11-28T09:30',
                     partySize: 1
@@ -41,7 +41,7 @@ describe('server', function() {
     describe('posting to confirm reservation', function(){
         it('should return 200 with correct request', function(done){
             request(app)
-                .post('/confirm_reservation')
+                .post('/1/confirm_reservation')
                 .send({
                     firstName: "Adam",
                     lastName: "West",
