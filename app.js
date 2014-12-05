@@ -48,8 +48,13 @@ app.post('/:restaurantId/provision_reservation', function(req, res){
         body: req.body,
         json: true
     }, function(error, response, body){
-        console.log(error);
-        res.render('provision-reservation', {reservationToken: body.reservationToken, id:req.param('restaurantId')});
+        console.log(response.statusCode);
+        if(response.statusCode === 201){
+            res.render('provision-reservation', {reservationToken: body.reservationToken, id:req.param('restaurantId'), provisionMessage: response.body.message});
+        }
+        else {
+            res.render('provision-error', {provisionMessage: response.body.message})
+        }
     });
 });
 
