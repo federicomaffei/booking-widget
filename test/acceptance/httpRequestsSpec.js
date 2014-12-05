@@ -37,7 +37,18 @@ describe('server', function() {
                 .set('Authorization', 'token ' + process.env.WIDGET_API_KEY)
                 .expect(200, done);
         });
+        it('should return 400 with wrong request', function(done){
+            request(app)
+                .post('/1/provision_reservation')
+                .send({
+                    dateTime: '2014-11-28T09:30',
+                    partySize: 1
+                })
+                .set('Authorization', 'token ' + process.env.WIDGET_API_KEY)
+                .expect(200, done);
+        });
     });
+
     describe('posting to confirm reservation', function(){
         it('should return 200 with correct request', function(done){
             request(app)
@@ -51,5 +62,6 @@ describe('server', function() {
                 .set('Authorization', 'token ' + process.env.WIDGET_API_KEY)
                 .expect(200, done);
         });
+
     });
 });

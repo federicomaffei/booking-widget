@@ -28,6 +28,20 @@ app.get('/', function(req, res){
   res.render('index', {timeSlots: timeCreator.createSlots()});
 });
 
+app.get('*', function(req, res, next){
+    var error = new Error();
+    error.status = 404;
+    next(error);
+});
+
+app.use(function(error, req, res, next){
+    if(error.status !== 404){
+        return next();
+    }
+    res.status(404);
+    res.render('404');
+});
+
 app.post('/:restaurantId/search_availability', function(req, res){
     request({
         uri: options.path + req.param('restaurantId') + '/availability?dateTime=' + req.body.date + req.body.timeSelect + '&partySize=' + req.body.partySize,
@@ -74,10 +88,9 @@ app.post('/:restaurantId/confirm_reservation', function(req, res){
     })
 });
 
-var server = app.listen(process.env.DEV_PORT || 3000, function() {
-    var host = server.address().address;
-    var port = server.address().port;
-    console.log('Server started at http://%s:%s', host, port);
+var server = app.listen(process.env.DEV_PORT || 3000).on('error', function(error) {
+    if (error.errno === 'EADDRINUSE') { console.log('port is busy'); }
+    else { console.log(error); }
 });
 
 module.exports = app;
