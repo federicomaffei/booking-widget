@@ -48,7 +48,6 @@ app.post('/:restaurantId/provision_reservation', function(req, res){
         body: req.body,
         json: true
     }, function(error, response, body){
-        console.log(response.statusCode);
         if(response.statusCode === 201){
             res.render('provision-reservation', {reservationToken: body.reservationToken, id:req.param('restaurantId'), provisionMessage: response.body.message});
         }
@@ -66,7 +65,12 @@ app.post('/:restaurantId/confirm_reservation', function(req, res){
         body: req.body,
         json: true
     }, function(error, response, body){
-        res.render('confirm-reservation', {confirmationMessage: body.message});
+        if(response.statusCode === 201){
+            res.render('confirm-reservation', {reservationToken: body.reservationToken, id:req.param('restaurantId'), confirmationMessage: response.body.message});
+        }
+        else {
+            res.render('confirm-error', {confirmationMessage: response.body.message})
+        }
     })
 });
 
