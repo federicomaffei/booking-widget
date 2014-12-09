@@ -7,7 +7,7 @@ describe('posting to provisioning reservation', function(){
 
     it('should return 200 with correct request', function(done){
         request(app)
-            .post('/1/provision_reservation')
+            .post('/provision_reservation/1')
             .send({
                 dateTime: '2014-11-28T09:30',
                 partySize: 1

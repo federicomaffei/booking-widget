@@ -3,7 +3,7 @@ extends layout
 block content
     span #{provisionMessage}
     h2 Enter your data to confirm your reservation:
-    form.confirmation-form(name='confirmation', action='/#{id}/confirm_reservation', method='post')
+    form.confirmation-form(name='confirmation', action='/confirm_reservation/#{id}', method='post')
         input(type="hidden", name="reservationToken", value=reservationToken)
         div.form-element
             label First name:

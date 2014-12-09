@@ -6,7 +6,7 @@ block content
         each item, index in results
             li.offer-line
                 button(class='available-hour-button', data-index='#{index}') Book at #{moment(item.dateTime).format('HH:mm')}
-            form.provision-form(name='provision', action='/#{id}/provision_reservation', method='post')
+            form.provision-form(name='provision', action='/provision_reservation/#{id}', method='post')
                 div(class='offer-popup', id='offer-popup-#{index}')
                     input(type="hidden", name="dateTime", value="#{item.dateTime}")
                     input(type="hidden", name="partySize", value="#{item.partySize}")

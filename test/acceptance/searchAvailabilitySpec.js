@@ -7,7 +7,7 @@ describe('posting to search availability', function(){
 
     it('should return 200 with correct request', function(done){
         request(app)
-            .post('/1/search_availability')
+            .post('/search_availability/1')
             .send({
                 timeSelect: 'T07:00',
                 partySize: '1',
@@ -18,7 +18,7 @@ describe('posting to search availability', function(){
     });
     it('should return 400 with date before today', function(done){
         request(app)
-            .post('/1/search_availability')
+            .post('/search_availability/1')
             .send({
                 timeSelect: 'T07:00',
                 partySize: '1',
@@ -29,7 +29,7 @@ describe('posting to search availability', function(){
     });
     it('should return 400 with empty time slot', function(done){
         request(app)
-            .post('/1/search_availability')
+            .post('/search_availability/1')
             .send({
                 timeSelect: '',
                 partySize: '1',
@@ -40,7 +40,7 @@ describe('posting to search availability', function(){
     });
     it('should return 400 with party size that is not integer', function(done){
         request(app)
-            .post('/1/search_availability')
+            .post('/search_availability/1')
             .send({
                 timeSelect: 'T07:00',
                 partySize: 'test',

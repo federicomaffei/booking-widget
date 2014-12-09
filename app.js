@@ -45,7 +45,7 @@ app.use(function(error, req, res, next){
     res.render('404');
 });
 
-app.post('/:restaurantId/search_availability', function(req, res){
+app.post('/search_availability/:restaurantId', function(req, res){
     req.checkBody('date', 'reservation date cannot be in the past').isAfter(moment().subtract(1, 'days'));
     req.checkBody('timeSelect', 'time slot cannot be empty').notEmpty();
     req.checkBody('partySize', 'partysize has to be an integer').isInt();
@@ -66,7 +66,7 @@ app.post('/:restaurantId/search_availability', function(req, res){
     }
 });
 
-app.post('/:restaurantId/provision_reservation', function(req, res){
+app.post('/provision_reservation/:restaurantId', function(req, res){
     req.body.partySize = parseInt(req.body.partySize);
     request({
         uri: options.path + req.param('restaurantId') + '/reservations',
@@ -84,7 +84,7 @@ app.post('/:restaurantId/provision_reservation', function(req, res){
     });
 });
 
-app.post('/:restaurantId/confirm_reservation', function(req, res){
+app.post('/confirm_reservation/:restaurantId', function(req, res){
     req.checkBody('firstName', 'customer first name cannot be empty').notEmpty();
     req.checkBody('lastName', 'customer last name cannot be empty').notEmpty();
     req.checkBody('emailAddress', 'customer email not valid').isEmail();

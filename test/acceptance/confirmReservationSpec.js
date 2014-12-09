@@ -7,7 +7,7 @@ describe('posting to confirm reservation', function(){
 
     it('should return 200 with correct request', function(done){
         request(app)
-            .post('/1/confirm_reservation')
+            .post('/confirm_reservation/1')
             .send({
                 firstName: "Adam",
                 lastName: "West",
@@ -19,7 +19,7 @@ describe('posting to confirm reservation', function(){
     });
     it('should return 400 with empty first name', function(done){
         request(app)
-            .post('/1/confirm_reservation')
+            .post('/confirm_reservation/1')
             .send({
                 firstName: "",
                 lastName: "West",
@@ -31,7 +31,7 @@ describe('posting to confirm reservation', function(){
     });
     it('should return 400 with empty last name', function(done){
         request(app)
-            .post('/1/confirm_reservation')
+            .post('/confirm_reservation/1')
             .send({
                 firstName: "Adam",
                 lastName: "",
@@ -43,7 +43,7 @@ describe('posting to confirm reservation', function(){
     });
     it('should return 400 with fake email', function(done){
         request(app)
-            .post('/1/confirm_reservation')
+            .post('/confirm_reservation/1')
             .send({
                 firstName: "Adam",
                 lastName: "West",
@@ -55,7 +55,7 @@ describe('posting to confirm reservation', function(){
     });
     it('should return 400 with empty phone number', function(done){
         request(app)
-            .post('/1/confirm_reservation')
+            .post('/confirm_reservation/1')
             .send({
                 firstName: "Adam",
                 lastName: "West",
