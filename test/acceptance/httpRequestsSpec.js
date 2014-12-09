@@ -19,25 +19,26 @@ describe('server', function() {
                 .send({
                     timeSelect:'T07:00',
                     partySize:'1',
-                    date:'2014-11-27'
+                    date:'2014-12-25'
                 })
                 .set('Authorization', 'token ' + process.env.WIDGET_API_KEY)
                 .expect(200, done);
+        });
+        it('should return 400 with empty date', function(done){
+            request(app)
+                .post('/1/search_availability')
+                .send({
+                    timeSelect:'T07:00',
+                    partySize:'1',
+                    date:''
+                })
+                .set('Authorization', 'token ' + process.env.WIDGET_API_KEY)
+                .expect(400, done);
         });
     });
 
     describe('posting to provisioning reservation', function(){
         it('should return 200 with correct request', function(done){
-            request(app)
-                .post('/1/provision_reservation')
-                .send({
-                    dateTime: '2014-11-28T09:30',
-                    partySize: 1
-                })
-                .set('Authorization', 'token ' + process.env.WIDGET_API_KEY)
-                .expect(200, done);
-        });
-        it('should return 400 with wrong request', function(done){
             request(app)
                 .post('/1/provision_reservation')
                 .send({

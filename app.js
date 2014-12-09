@@ -4,6 +4,7 @@ var express = require('express'),
     https = require('https'),
     app = express(),
     bodyParser = require('body-parser'),
+    expressValidator = require('express-validator'),
     request = require('request'),
     timeCreator = require('./src/utilities/timeCreator'),
     options = {
@@ -20,6 +21,7 @@ app.set('view engine', 'jade');
 
 app.use(express.static(__dirname + '/assets'));
 app.use(bodyParser.json());
+app.use(expressValidator({}));
 app.use(bodyParser.urlencoded({
   extended: true
 }));
@@ -43,14 +45,22 @@ app.use(function(error, req, res, next){
 });
 
 app.post('/:restaurantId/search_availability', function(req, res){
-    request({
-        uri: options.path + req.param('restaurantId') + '/availability?dateTime=' + req.body.date + req.body.timeSelect + '&partySize=' + req.body.partySize,
-        method: 'GET',
-        headers: options.headers,
-        json: true
-    }, function(error, response, body){
-        res.render('search-availability', {results: body.results, id:req.param('restaurantId')});
-    });
+    req.checkBody('date', 'reservation date cannot be in the past').notEmpty();
+    var errors = req.validationErrors();
+    if(errors){
+        res.send('There have been validation errors', 400);
+        return;
+    }
+    else {
+        request({
+            uri: options.path + req.param('restaurantId') + '/availability?dateTime=' + req.body.date + req.body.timeSelect + '&partySize=' + req.body.partySize,
+            method: 'GET',
+            headers: options.headers,
+            json: true
+        }, function(error, response, body){
+            res.render('search-availability', {results: body.results, id:req.param('restaurantId')});
+        });
+    }
 });
 
 app.post('/:restaurantId/provision_reservation', function(req, res){
