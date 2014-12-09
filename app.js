@@ -47,6 +47,8 @@ app.use(function(error, req, res, next){
 
 app.post('/:restaurantId/search_availability', function(req, res){
     req.checkBody('date', 'reservation date cannot be in the past').isAfter(moment().subtract(1, 'days'));
+    req.checkBody('timeSelect', 'time slot cannot be empty').notEmpty();
+    req.checkBody('partySize', 'partysize has to be an integer').isInt();
     var errors = req.validationErrors();
     if(errors){
         res.status(400).send('There have been validation errors');
@@ -83,20 +85,35 @@ app.post('/:restaurantId/provision_reservation', function(req, res){
 });
 
 app.post('/:restaurantId/confirm_reservation', function(req, res){
-    request({
-        uri: options.path + req.param('restaurantId') + '/reservations/provisional/' + req.body.reservationToken + '/confirm',
-        method: 'POST',
-        headers: options.headers,
-        body: req.body,
-        json: true
-    }, function(error, response, body){
-        if(response.statusCode === 201){
-            res.render('confirm-reservation', {reservationToken: body.reservationToken, id:req.param('restaurantId'), confirmationMessage: response.body.message});
-        }
-        else {
-            res.render('confirm-error', {confirmationMessage: response.body.message})
-        }
-    })
+    req.checkBody('firstName', 'customer first name cannot be empty').notEmpty();
+    req.checkBody('lastName', 'customer last name cannot be empty').notEmpty();
+    req.checkBody('emailAddress', 'customer email not valid').isEmail();
+    req.checkBody('phoneNumber', 'customer phone number cannot be empty').notEmpty();
+    var errors = req.validationErrors();
+    if(errors){
+        res.status(400).send('There have been validation errors');
+        return;
+    }
+    else {
+        request({
+            uri: options.path + req.param('restaurantId') + '/reservations/provisional/' + req.body.reservationToken + '/confirm',
+            method: 'POST',
+            headers: options.headers,
+            body: req.body,
+            json: true
+        }, function (error, response, body) {
+            if (response.statusCode === 201) {
+                res.render('confirm-reservation', {
+                    reservationToken: body.reservationToken,
+                    id: req.param('restaurantId'),
+                    confirmationMessage: response.body.message
+                });
+            }
+            else {
+                res.render('confirm-error', {confirmationMessage: response.body.message})
+            }
+        })
+    }
 });
 
 var server = app.listen(process.env.DEV_PORT || 3000).on('error', function(error) {
