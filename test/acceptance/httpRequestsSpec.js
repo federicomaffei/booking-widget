@@ -19,18 +19,18 @@ describe('server', function() {
                 .send({
                     timeSelect:'T07:00',
                     partySize:'1',
-                    date:'2014-12-25'
+                    date:'2014-12-09'
                 })
                 .set('Authorization', 'token ' + process.env.WIDGET_API_KEY)
                 .expect(200, done);
         });
-        it('should return 400 with empty date', function(done){
+        it('should return 400 with date before today', function(done){
             request(app)
                 .post('/1/search_availability')
                 .send({
                     timeSelect:'T07:00',
                     partySize:'1',
-                    date:''
+                    date:'2014-12-08'
                 })
                 .set('Authorization', 'token ' + process.env.WIDGET_API_KEY)
                 .expect(400, done);

@@ -7,12 +7,13 @@ var express = require('express'),
     expressValidator = require('express-validator'),
     request = require('request'),
     timeCreator = require('./src/utilities/timeCreator'),
+    moment = require('moment'),
     options = {
         path: 'https://sandbox-api.opentable.co.uk/v1/restaurants/',
         headers: {
             'Authorization': 'token ' + process.env.WIDGET_API_KEY
         }
-    }
+    };
 
 app.locals.moment = require('moment');
 app.locals.timeCreator = require('./src/utilities/timeCreator');
@@ -45,10 +46,10 @@ app.use(function(error, req, res, next){
 });
 
 app.post('/:restaurantId/search_availability', function(req, res){
-    req.checkBody('date', 'reservation date cannot be in the past').notEmpty();
+    req.checkBody('date', 'reservation date cannot be in the past').isAfter(moment().subtract(1, 'days'));
     var errors = req.validationErrors();
     if(errors){
-        res.send('There have been validation errors', 400);
+        res.status(400).send('There have been validation errors');
         return;
     }
     else {
