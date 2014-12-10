@@ -32,6 +32,7 @@
     "express-validator": "2.7.0"
   },
   "devDependencies": {
+    "grunt": "^0.4.5",
     "hippie": "^0.3.0"
   }
 }
