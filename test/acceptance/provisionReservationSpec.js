@@ -1,9 +1,9 @@
 describe('posting to provisioning reservation', function(){
 
+    require('expect.js');
+    require('moment');
     var request = require('supertest'),
-        expect = require('expect.js'),
-        app = require('../../app'),
-        moment = require('moment');
+        app = require('../../app');
 
     it('should return 200 with correct request', function(done){
         request(app)

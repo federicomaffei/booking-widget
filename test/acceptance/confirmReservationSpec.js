@@ -1,18 +1,18 @@
 describe('posting to confirm reservation', function(){
 
+    require('expect.js');
+    require('moment');
     var request = require('supertest'),
-        expect = require('expect.js'),
-        app = require('../../app'),
-        moment = require('moment');
+        app = require('../../app');
 
     it('should return 200 with correct request', function(done){
         request(app)
             .post('/confirm_reservation/1')
             .send({
-                firstName: "Adam",
-                lastName: "West",
-                emailAddress: "adam.west@example.com",
-                phoneNumber: "07981234567"
+                firstName: 'Adam',
+                lastName: 'West',
+                emailAddress: 'adam.west@example.com',
+                phoneNumber: '07981234567'
             })
             .set('Authorization', 'token ' + process.env.WIDGET_API_KEY)
             .expect(200, done);
@@ -21,10 +21,10 @@ describe('posting to confirm reservation', function(){
         request(app)
             .post('/confirm_reservation/1')
             .send({
-                firstName: "",
-                lastName: "West",
-                emailAddress: "adam.west@example.com",
-                phoneNumber: "07981234567"
+                firstName: '',
+                lastName: 'West',
+                emailAddress: 'adam.west@example.com',
+                phoneNumber: '07981234567'
             })
             .set('Authorization', 'token ' + process.env.WIDGET_API_KEY)
             .expect(400, done);
@@ -33,10 +33,10 @@ describe('posting to confirm reservation', function(){
         request(app)
             .post('/confirm_reservation/1')
             .send({
-                firstName: "Adam",
-                lastName: "",
-                emailAddress: "adam.west@example.com",
-                phoneNumber: "07981234567"
+                firstName: 'Adam',
+                lastName: '',
+                emailAddress: 'adam.west@example.com',
+                phoneNumber: '07981234567'
             })
             .set('Authorization', 'token ' + process.env.WIDGET_API_KEY)
             .expect(400, done);
@@ -45,10 +45,10 @@ describe('posting to confirm reservation', function(){
         request(app)
             .post('/confirm_reservation/1')
             .send({
-                firstName: "Adam",
-                lastName: "West",
-                emailAddress: "not an email",
-                phoneNumber: "07981234567"
+                firstName: 'Adam',
+                lastName: 'West',
+                emailAddress: 'not an email',
+                phoneNumber: '07981234567'
             })
             .set('Authorization', 'token ' + process.env.WIDGET_API_KEY)
             .expect(400, done);
@@ -57,10 +57,10 @@ describe('posting to confirm reservation', function(){
         request(app)
             .post('/confirm_reservation/1')
             .send({
-                firstName: "Adam",
-                lastName: "West",
-                emailAddress: "adam.west@example.com",
-                phoneNumber: ""
+                firstName: 'Adam',
+                lastName: 'West',
+                emailAddress: 'adam.west@example.com',
+                phoneNumber: ''
             })
             .set('Authorization', 'token ' + process.env.WIDGET_API_KEY)
             .expect(400, done);

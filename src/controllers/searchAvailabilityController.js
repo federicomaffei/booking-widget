@@ -1,11 +1,12 @@
 /*jslint node: true */
 'use strict';
 
+require('../utilities/timeCreator');
+
 var express = require('express'),
     bodyParser = require('body-parser'),
     expressValidator = require('express-validator'),
     request = require('request'),
-    timeCreator = require('../utilities/timeCreator'),
     moment = require('moment'),
     options = {
         path: 'https://sandbox-api.opentable.co.uk/v1/restaurants/',

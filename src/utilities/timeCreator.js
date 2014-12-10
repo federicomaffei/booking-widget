@@ -1,4 +1,3 @@
-/*jslint node: true */
 'use strict';
 
 var moment = require('moment');
@@ -7,7 +6,9 @@ module.exports.setStart = function(date) {
     if(moment().isSame(date, 'day')){
         return parseInt(moment().format('H'));
     }
-    else return 7;
+    else {
+        return 7;
+    }
 };
 
 module.exports.convertTime = function(time) {
@@ -15,12 +16,18 @@ module.exports.convertTime = function(time) {
     if(parseInt(hour) < 13){
         return time.substring(1,6) + ' AM';
     }
-    else return (hour - 12).toString() + time.substring(3,6) + ' PM';
+    else {
+        return (hour - 12).toString() + time.substring(3,6) + ' PM';
+    }
 };
 
 module.exports.createSlots = function(minTime, maxTime) {
-    if(typeof(minTime)==='undefined') minTime = 7;
-    if(typeof(maxTime)==='undefined') maxTime = 22;
+    if(typeof(minTime)==='undefined') {
+        minTime = 7;
+    }
+    if(typeof(maxTime)==='undefined') {
+        maxTime = 22;
+    }
     var times = [];
     for(var index = minTime; index < maxTime; index++){
         if(String(index).length === 1){

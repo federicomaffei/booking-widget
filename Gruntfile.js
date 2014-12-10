@@ -1,4 +1,3 @@
-/*jslint node: true */
 module.exports = function(grunt){
 
     grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -7,7 +6,10 @@ module.exports = function(grunt){
 
     grunt.initConfig({
         jshint: {
-            files: ['Gruntfile.js', 'assets/js/*.js', 'src/**/*.js', 'test/**/*.js']
+                options: {
+                    jshintrc: '.jshintrc'
+            },
+            files: ['Gruntfile.js', './*.js', 'assets/js/*.js', 'src/**/*.js', 'test/**/*.js']
         },
         mochaTest: {
             test: {
