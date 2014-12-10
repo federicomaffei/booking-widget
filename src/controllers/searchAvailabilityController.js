@@ -1,0 +1,44 @@
+'use strict'
+
+var express = require('express'),
+    bodyParser = require('body-parser'),
+    expressValidator = require('express-validator'),
+    request = require('request'),
+    timeCreator = require('../utilities/timeCreator'),
+    moment = require('moment'),
+    options = {
+        path: 'https://sandbox-api.opentable.co.uk/v1/restaurants/',
+        headers: {
+            'Authorization': 'token ' + process.env.WIDGET_API_KEY
+        }
+    },
+    router = express.Router();
+
+router.use(bodyParser.json());
+router.use(expressValidator({}));
+router.use(bodyParser.urlencoded({
+    extended: true
+}));
+
+router.post('/:restaurantId', function(req, res){
+    req.checkBody('date', 'reservation date cannot be in the past').isAfter(moment().subtract(1, 'days'));
+    req.checkBody('timeSelect', 'time slot cannot be empty').notEmpty();
+    req.checkBody('partySize', 'partysize has to be an integer').isInt();
+    var errors = req.validationErrors();
+    if(errors){
+        res.status(400).send('There have been validation errors');
+        return;
+    }
+    else {
+        request({
+            uri: options.path + req.param('restaurantId') + '/availability?dateTime=' + req.body.date + req.body.timeSelect + '&partySize=' + req.body.partySize,
+            method: 'GET',
+            headers: options.headers,
+            json: true
+        }, function(error, response, body){
+            res.render('search-availability', {results: body.results, id:req.param('restaurantId')});
+        });
+    }
+});
+
+module.exports = router;
