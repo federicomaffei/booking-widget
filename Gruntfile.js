@@ -21,11 +21,18 @@ module.exports = function(grunt){
         },
         nodemon: {
             dev: {
-                script: 'app.js'
+                script: 'app.js',
+                options: {
+                    nodeArgs: ['--debug'],
+                    env: {
+                        PORT: '3000'
+                    }
+                }
             }
         }
     });
 
-    grunt.registerTask('default', ['jshint', 'mochaTest', 'nodemon']);
+    grunt.registerTask('default', ['jshint', 'mochaTest']);
+    grunt.registerTask('run', ['nodemon']);
     grunt.registerTask('test', ['mochaTest']);
 };
