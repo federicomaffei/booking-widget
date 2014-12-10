@@ -1,11 +1,13 @@
+/*jslint node: true */
 module.exports = function(grunt){
+
+    grunt.loadNpmTasks('grunt-contrib-jshint');
 
     grunt.initConfig({
         jshint: {
-            all: ['Gruntfile.js', 'assets/js/*.js', 'src/**/*.js', 'test/**/*.js']
+            files: ['Gruntfile.js', 'assets/js/*.js', 'src/**/*.js', 'test/**/*.js']
         }
     });
 
-    grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.registerTask('default', ['jshint']);
+    grunt.registerTask('default', ['jshint', 'npm test']);
 };

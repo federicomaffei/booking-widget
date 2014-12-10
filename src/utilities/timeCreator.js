@@ -1,4 +1,5 @@
-'use strict'
+/*jslint node: true */
+'use strict';
 
 var moment = require('moment');
 
@@ -30,7 +31,7 @@ module.exports.createSlots = function(minTime, maxTime) {
             times.push('T' + String(index) + ':00');
             times.push('T' + String(index) + ':30');
         }
-    };
+    }
     if(String(maxTime).length === 1){
         times.push('T0' + String(maxTime) + ':00');
     }

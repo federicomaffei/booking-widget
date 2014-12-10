@@ -1,4 +1,5 @@
-'use strict'
+/*jslint node: true */
+'use strict';
 
 var express = require('express'),
     bodyParser = require('body-parser'),
@@ -44,9 +45,9 @@ router.post('/:restaurantId', function(req, res){
                 });
             }
             else {
-                res.render('confirm-error', {confirmationMessage: response.body.message})
+                res.render('confirm-error', {confirmationMessage: response.body.message});
             }
-        })
+        });
     }
 });
 

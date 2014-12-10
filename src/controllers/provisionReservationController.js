@@ -1,4 +1,5 @@
-'use strict'
+/*jslint node: true */
+'use strict';
 
 var express = require('express'),
     bodyParser = require('body-parser'),
@@ -31,7 +32,7 @@ router.post('/:restaurantId', function(req, res){
             res.render('provision-reservation', {reservationToken: body.reservationToken, id:req.param('restaurantId'), provisionMessage: response.body.message});
         }
         else {
-            res.render('provision-error', {provisionMessage: response.body.message})
+            res.render('provision-error', {provisionMessage: response.body.message});
         }
     });
 });
