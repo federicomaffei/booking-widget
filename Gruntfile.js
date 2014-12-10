@@ -3,6 +3,7 @@ module.exports = function(grunt){
 
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-mocha-test');
+    grunt.loadNpmTasks('grunt-nodemon');
 
     grunt.initConfig({
         jshint: {
@@ -17,9 +18,14 @@ module.exports = function(grunt){
                 },
                 src: ['test/**/*.js']
             }
+        },
+        nodemon: {
+            dev: {
+                script: 'app.js'
+            }
         }
     });
 
-    grunt.registerTask('default', ['jshint', 'mochaTest']);
+    grunt.registerTask('default', ['jshint', 'mochaTest', 'nodemon']);
     grunt.registerTask('test', ['mochaTest']);
 };
