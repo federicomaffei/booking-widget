@@ -11,9 +11,7 @@ block content
         div#book-by
             div.form-element
                 label Book by:
-                select(name='timeSelect')
-                    each item in timeSlots
-                        option(value=item) #{timeCreator.convertTime(item)}
+                select(name='timeSelect', id='timepicker')
         div#party-size
             div.form-element
                 label Party size:
