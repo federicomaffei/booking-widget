@@ -1,8 +1,10 @@
 'use strict';
 
 var express = require('express'),
+    dotenv = require('dotenv'),
     app = express();
 
+dotenv.load();
 app.locals.moment = require('moment');
 app.locals.timeCreator = require('./src/utilities/timeCreator');
 
@@ -15,7 +17,7 @@ app.use('/provision_reservation', require('./src/controllers/provisionReservatio
 app.use('/confirm_reservation', require('./src/controllers/confirmReservationController'));
 app.use('*', require('./src/controllers/404Controller'));
 
-app.listen(process.env.DEV_PORT || 3000).on('error', function(error) {
+app.listen( process.env.PORT || 3000).on('error', function(error) {
     if (error.errno === 'EADDRINUSE') { console.log('port is busy'); }
     else { console.log(error); }
 });

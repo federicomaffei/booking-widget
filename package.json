@@ -29,9 +29,11 @@
     "moment": "^2.8.4",
     "request": "^2.48.0",
     "supertest": "^0.15.0",
+    "dotenv": "0.4.0",
     "express-validator": "2.7.0"
   },
   "devDependencies": {
+    "foreman": "^1.1.0",
     "grunt": "^0.4.5",
     "grunt-contrib-jshint": "^0.10.0",
     "grunt-mocha-test": "^0.12.4",
