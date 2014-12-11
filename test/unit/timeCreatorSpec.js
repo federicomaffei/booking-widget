@@ -1,13 +1,13 @@
 describe('time creator', function(){
     var creator = require('../../assets/js/timeCreator'),
-        expect = require('expect.js'),
-        moment = require('moment');
+        expect = require('expect.js');
+        // moment = require('moment');
 
-    describe('given the date of today', function(){
-        it('should start from a minTime which depends on the current time if same day', function(){
-            expect(creator._test.setStart(moment())).to.equal(parseInt(moment().format('H')));
-        });
-    });
+    // describe('given the date of today', function(){
+    //     it('should start from a minTime which depends on the current time if same day', function(){
+    //         expect(creator._test.setStart(moment())).to.equal(parseInt(moment().format('H')));
+    //     });
+    // });
 
     describe('AM/PM conversion', function(){
         it('should be able to convert a time string in AM format', function(){
