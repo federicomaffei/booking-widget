@@ -1,9 +1,9 @@
 describe('posting to search availability', function(){
 
     require('expect.js');
-    require('moment');
-    var request = require('supertest'),
-        app = require('../../app');
+        var app = require('../../app'),
+        moment = require('moment'),
+        request = require('supertest');
 
     it('should return 200 with correct request', function(done){
         request(app)

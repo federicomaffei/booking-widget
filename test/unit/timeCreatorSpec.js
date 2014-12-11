@@ -1,6 +1,6 @@
 describe('time creator', function(){
     var creator = require('../../src/utilities/timeCreator'),
-        expect = require('expect.js');
+        expect = require('expect.js'),
         moment = require('moment');
 
     describe('given the date of today', function(){
