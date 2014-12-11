@@ -63,3 +63,10 @@ $(document).ready(function(){
         addSlotsToOptions(slots);
     });
 });
+
+exports._test = {
+    setStart: setStart,
+    convertTime: convertTime,
+    createSlots: createSlots,
+    addSlotsToOptions: addSlotsToOptions
+};
