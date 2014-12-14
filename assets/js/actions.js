@@ -8,12 +8,15 @@ function setStart(date) {
 }
 
 function convertTime(time) {
-    var hour = parseInt(time.substring(1,3));
-    if(parseInt(hour) < 13){
-        return time.substring(1,6) + ' AM';
+    var hour = parseInt(time.substring(1, 3));
+    if (hour < 13) {
+        return time.substring(1, 6) + ' AM';
+    }
+    else if (hour < 22) {
+        return '0' + (hour - 12).toString() + time.substring(3, 6) + ' PM';
     }
     else {
-        return (hour - 12).toString() + time.substring(3,6) + ' PM';
+        return (hour - 12).toString() + time.substring(3, 6) + ' PM';
     }
 }
 
