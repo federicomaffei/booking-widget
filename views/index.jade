@@ -2,27 +2,19 @@ extends layout
 
 block content
     form(id='select-availability', name='search', method='post')
-        div#restaurant-selection
-            div.form-element
-                label Restaurant ID:
+        div#form-container
+            div(class="form-element", id="party-size")
+                select(name='partySize')
+                    each size in [1,2,3,4,5,6]
+                        option(value=size)= size + ' people'
+            div(class="form-element", id="booking-date")
+                input(type='text', name='date', id='datepicker')
+            div(class="form-element", id="book-by")
+                select(name='timeSelect', id='timepicker')
+            div(class="form-element", id="restaurant-selection")
                 select(name='restaurantId')
                     each id in [1,2,3,9,10,11]
                         option(value=id)= id
-        div#book-by
-            div.form-element
-                label Book by:
-                select(name='timeSelect', id='timepicker')
-        div#party-size
-            div.form-element
-                label Party size:
-                select(name='partySize')
-                    each size in [1,2,3,4,5,6]
-                        option(value=size)= size
-        div#booking-date
-            div.form-element
-                label Date:
-                input(type='text', name='date', id='datepicker')
-        div#submit-button
-            div.form-element
-                input(type="submit", value="Check Availability")
+            div(class="form-element", id="submit-button")
+                input(type="submit", class="button", value="Check Availability")
 

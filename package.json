@@ -39,6 +39,7 @@
     "grunt-contrib-jshint": "^0.10.0",
     "grunt-mocha-test": "^0.12.4",
     "grunt-nodemon": "^0.3.0",
-    "hippie": "^0.3.0"
+    "hippie": "^0.3.0",
+    "zombie": "^2.5.1"
   }
 }
