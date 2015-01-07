@@ -26,6 +26,7 @@ $(document).ready(function() {
 
     var now = tc.createSlots(moment().format('HH'));
     addSlotsToOptions(now, 22);
+    console.log('hello');
     $('#datepicker').change(function(){
         $('#timepicker').empty();
         var slots = tc.createSlots(tc.setStart($(this).val()), 22);

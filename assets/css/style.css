@@ -1,6 +1,5 @@
 body {
-    font-family: "franklin-gothic-urw", Arial, "Helvetica Neue", Helvetica, sans-serif;
-    font-size: 100%;
+    font-size: 1.2em;
     font-weight: normal;
     font-style: normal;
     padding: 0;
@@ -14,6 +13,8 @@ label {
 }
 
 select {
+    font-family: "franklin-gothic-urw", Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 100%;
     height: 100%;
     width: 100%;
     cursor: pointer;
@@ -34,6 +35,8 @@ option {
 }
 
 input {
+    font-family: "franklin-gothic-urw", Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 100%;
     width: 100%;
     height: 100%;
     padding: 0px;
@@ -48,7 +51,8 @@ input {
     display: block;
     width: 100%;
     height: 20%;
-    background: url(//media.otstatic.com/img/logo-uk-dcdd4f22a9b9d3ce4967fe2679b37a9f.png) 50% 50% no-repeat;
+    background: url(/img/OTlogo.png) 50% 50% no-repeat;
+    background-color: #ffffff;
     background-size: 100%;
 }
 
@@ -63,8 +67,8 @@ input {
 }
 
 #widget-container {
-    width: 200px;
-    height: 300px;
+    width: 300px;
+    height: 400px;
 }
 
 .button {

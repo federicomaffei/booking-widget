@@ -2967,6 +2967,7 @@ $(document).ready(function() {
 
     var now = tc.createSlots(moment().format('HH'));
     addSlotsToOptions(now, 22);
+    console.log('hello');
     $('#datepicker').change(function(){
         $('#timepicker').empty();
         var slots = tc.createSlots(tc.setStart($(this).val()), 22);
@@ -3025,9 +3026,5 @@ module.exports.createSlots = function(minTime, maxTime) {
         times.push('T' + String(maxTime) + ':00');
     }
     return times;
-};
-
-module.exports.test = function(number) {
-  return number * 5;
 };
 },{"moment":1}]},{},[2]);
