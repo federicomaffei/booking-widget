@@ -21,7 +21,6 @@ a {
     display: block;
     position: relative;
     height: 100%;
-    background: transparent;
     z-index: 1;
     font-family: "franklin-gothic-urw", Arial, "Helvetica Neue", Helvetica, sans-serif;
     font-size: 100%;
@@ -81,8 +80,8 @@ option {
     font-family: "franklin-gothic-urw", Arial, "Helvetica Neue", Helvetica, sans-serif;
     font-size: 100%;
     font-weight: 300;
-    border: 0px;
-    border-radius: 0px;
+    border: 0;
+    border-radius: 0;
 }
 
 a:visited {
