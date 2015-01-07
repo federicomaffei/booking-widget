@@ -3,18 +3,21 @@ extends layout
 block content
     form(id='select-availability', name='search', method='post')
         div#form-container
-            div(class="form-element", id="party-size")
-                select(name='partySize')
+            div(class='form-element', id='party-size')
+                a(class='select-link', id='party-field') 2 people
+                select(name='partySize', id='partypicker')
                     each size in [1,2,3,4,5,6]
                         option(value=size)= size + ' people'
-            div(class="form-element", id="booking-date")
+            div(class='form-element', id='booking-date')
+                a(class='select-link', id='date-field') #{moment().format("MMM Do YYYY")}
                 input(type='text', name='date', id='datepicker')
-            div(class="form-element", id="book-by")
+            div(class='form-element', id='book-by')
+                a(class='select-link', id='time-field') 04:00 PM
                 select(name='timeSelect', id='timepicker')
-            div(class="form-element", id="restaurant-selection")
-                select(name='restaurantId')
+            div(class='form-element', id='restaurant-selection')
+                a(class='select-link', id='restaurant-field') Select a restaurant
+                select(name='restaurantId', id='restaurantpicker')
                     each id in [1,2,3,9,10,11]
                         option(value=id)= id
-            div(class="form-element", id="submit-button")
-                input(type="submit", class="button", value="Find a table")
-
+            div(class='form-element', id='submit-button')
+                input(type='submit', class='button', value='Find a table')

@@ -2953,13 +2953,39 @@ function addSlotsToOptions(slots){
 }
 
 $(document).ready(function() {
+
     $('#select-availability').submit(function() {
-        var restaurantId = $( 'select:first' ).val();
+        var restaurantId = $('#restaurantpicker').val();
         $('#select-availability').attr('action', '/search_availability/' + restaurantId);
     });
 
-    $('#datepicker').datepicker({ dateFormat: 'yy-mm-dd', minDate: new Date()});
-    $('#datepicker').datepicker('setDate', new Date());
+    $('#datepicker').datepicker({
+        dateFormat: 'yy-mm-dd',
+        minDate: new Date(),
+        onSelect: function(dateText, inst) {
+            $('#date-field').empty();
+            $('#date-field').append('<a>' + moment(dateText).format("MMM Do YYYY") + '</a>');
+            $('#timepicker').empty();
+            var slots = tc.createSlots(tc.setStart(dateText, 22));
+            addSlotsToOptions(slots);
+            $('#booking-date').append();
+        }
+    });
+
+    $('#partypicker').change(function() {
+        $('#party-field').empty();
+        $('#party-field').append('<a>' + $('#partypicker option:selected').text() + '</a>');
+    });
+
+    $('#timepicker').change(function() {
+        $('#time-field').empty();
+        $('#time-field').append('<a>' + $('#timepicker option:selected').text() + '</a>');
+    });
+
+    $('#restaurantpicker').change(function() {
+        $('#restaurant-field').empty();
+        $('#restaurant-field').append('<a> Restaurant ' + $('#restaurantpicker option:selected').text() + '</a>');
+    });
 
     $('.available-hour-button').click(function() {
         $('#offer-popup-'+ $(this).data('index')).toggle('slow');
@@ -2967,12 +2993,6 @@ $(document).ready(function() {
 
     var now = tc.createSlots(moment().format('HH'));
     addSlotsToOptions(now, 22);
-    console.log('hello');
-    $('#datepicker').change(function(){
-        $('#timepicker').empty();
-        var slots = tc.createSlots(tc.setStart($(this).val()), 22);
-        addSlotsToOptions(slots);
-    });
 });
 },{"./timeCreator":3,"moment":1}],3:[function(require,module,exports){
 'use strict';
