@@ -23,7 +23,7 @@ $(document).ready(function() {
         minDate: new Date(),
         onSelect: function(dateText, inst) {
             $('#date-field').empty();
-            $('#date-field').append(moment(dateText).format("MMM Do YYYY") + '<i class="fa fa-angle-down arrow"></i>');
+            $('#date-field').append(moment(dateText).format("MMM Do YYYY") + '<i class="fa fa-angle-down select-arrow"></i>');
             $('#timepicker').empty();
             var slots = tc.createSlots(tc.setStart(dateText, 22));
             addSlotsToOptions(slots);
@@ -33,17 +33,17 @@ $(document).ready(function() {
 
     $('#partypicker').change(function() {
         $('#party-field').empty();
-        $('#party-field').append($('#partypicker option:selected').text() + '<i class="fa fa-angle-down arrow"></i>');
+        $('#party-field').append($('#partypicker option:selected').text() + '<i class="fa fa-angle-down select-arrow"></i>');
     });
 
     $('#timepicker').change(function() {
         $('#time-field').empty();
-        $('#time-field').append($('#timepicker option:selected').text() + '<i class="fa fa-angle-down arrow"></i>');
+        $('#time-field').append($('#timepicker option:selected').text() + '<i class="fa fa-angle-down select-arrow"></i>');
     });
 
     $('#restaurantpicker').change(function() {
         $('#restaurant-field').empty();
-        $('#restaurant-field').append($('#restaurantpicker option:selected').text() + '<i class="fa fa-angle-down arrow"></i>');
+        $('#restaurant-field').append($('#restaurantpicker option:selected').text() + '<i class="fa fa-angle-down select-arrow"></i>');
     });
 
     $('.available-hour-button').click(function() {
