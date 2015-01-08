@@ -5,21 +5,21 @@ block content
         div#form-container
             div(class='form-element', id='party-size')
                 a(class='select-link', id='party-field') 2 people
-                    i(class='fa fa-angle-down arrow')
+                    i(class='fa fa-angle-down select-arrow')
                 select(name='partySize', id='partypicker')
                     each size in [1,2,3,4,5,6]
                         option(value=size)= size + ' people'
             div(class='form-element', id='booking-date')
                 a(class='select-link', id='date-field') #{moment().format("MMM Do YYYY")}
-                    i(class='fa fa-angle-down arrow')
+                    i(class='fa fa-angle-down select-arrow')
                 input(type='text', name='date', id='datepicker')
             div(class='form-element', id='book-by')
                 a(class='select-link', id='time-field') 04:00 PM
-                    i(class='fa fa-angle-down arrow')
+                    i(class='fa fa-angle-down select-arrow')
                 select(name='timeSelect', id='timepicker')
             div(class='form-element', id='restaurant-selection')
                 a(class='select-link', id='restaurant-field') Select a restaurant
-                    i(class='fa fa-angle-down arrow')
+                    i(class='fa fa-angle-down select-arrow')
                 select(name='restaurantId', id='restaurantpicker')
                     each id in [1,2,3,9,10,11]
                         option(value=id)= id

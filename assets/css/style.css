@@ -19,7 +19,7 @@ select {
     z-index: 2;
 }
 
-a {
+a.select-link {
     display: block;
     position: relative;
     padding: 1rem;
@@ -40,7 +40,7 @@ option {
     min-height: 1.2em;
 }
 
-.arrow {
+.select-arrow {
     color: #999;
     float: right;
 }
