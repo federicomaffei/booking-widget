@@ -4,7 +4,8 @@
   "description": "booking widget for OpenTable API",
   "main": "app.js",
   "scripts": {
-    "test": "mocha --reporter spec --timeout 10s --recursive"
+    "test": "mocha --reporter spec --timeout 10s --recursive",
+    "browserify": "browserify src/utilities/frontEndActions.js -o assets/js/bundle.js"
   },
   "repository": {
     "type": "git",
