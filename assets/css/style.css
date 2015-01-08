@@ -9,18 +9,21 @@ body {
 }
 
 select {
-    height: 100%;
-    width: 100%;
     position: absolute;
     opacity: 0;
     top: 0;
+    height: 100%;
+    width: 100%;
+    -webkit-appearance: none;
+    -webkit-border-radius: 0;
     z-index: 2;
 }
 
 a {
     display: block;
     position: relative;
-    height: 100%;
+    padding: 1rem;
+    height: 32px;
     z-index: 1;
     font-family: "franklin-gothic-urw", Arial, "Helvetica Neue", Helvetica, sans-serif;
     font-size: 100%;
@@ -35,6 +38,11 @@ option {
     padding: 0px 2px 1px;
     white-space: pre;
     min-height: 1.2em;
+}
+
+.arrow {
+    color: #999;
+    float: right;
 }
 
 #datepicker {
