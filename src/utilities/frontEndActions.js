@@ -51,5 +51,6 @@ $(document).ready(function() {
     });
 
     var now = tc.createSlots(moment().format('HH'));
+    $('#time-field').append(tc.convertTime(now[0]));
     addSlotsToOptions(now, 22);
 });

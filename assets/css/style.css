@@ -106,15 +106,11 @@ a:visited {
     color: black;
 }
 
-.top-line {
-    height: 20%;
-    background-color: #ffffff;
-}
-
 .top-title {
     margin: 0px;
-    font-size: 1.3em;
+    font-size: 100%;
     font-family: "franklin-gothic-urw", Arial, "Helvetica Neue", Helvetica, sans-serif;
+    background-color: #ffffff;
 }
 
 .form-element {
@@ -140,6 +136,13 @@ li.offer-line {
 
 .offer-popup {
     display: none;
+}
+
+#availability-list {
+    background-color: #ffffff;
+    margin: 0px;
+    padding-top: 20px;
+    padding-bottom: 5px;
 }
 
 #availability-list li {

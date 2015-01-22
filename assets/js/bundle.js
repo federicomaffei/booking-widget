@@ -3069,9 +3069,9 @@ $(document).ready(function() {
     $('#datepicker').datepicker({
         dateFormat: 'yy-mm-dd',
         minDate: new Date(),
-        onSelect: function(dateText, inst) {
+        onSelect: function(dateText) {
             $('#date-field').empty();
-            $('#date-field').append(moment(dateText).format("MMM Do YYYY") + '<i class="fa fa-angle-down select-arrow"></i>');
+            $('#date-field').append(moment(dateText).format('MMM Do YYYY') + '<i class="fa fa-angle-down select-arrow"></i>');
             $('#timepicker').empty();
             var slots = tc.createSlots(tc.setStart(dateText, 22));
             addSlotsToOptions(slots);
@@ -3099,6 +3099,7 @@ $(document).ready(function() {
     });
 
     var now = tc.createSlots(moment().format('HH'));
+    $('#time-field').append(tc.convertTime(now[0]));
     addSlotsToOptions(now, 22);
 });
 },{"./timeCreator":3,"moment":1}],3:[function(require,module,exports){
