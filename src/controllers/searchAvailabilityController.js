@@ -32,12 +32,12 @@ router.post('/:restaurantId', function(req, res){
     }
     else {
         request({
-            uri: options.path + req.param('restaurantId') + '/availability?dateTime=' + req.body.date + req.body.timeSelect + '&partySize=' + req.body.partySize,
+            uri: options.path + req.params.restaurantId + '/availability?dateTime=' + req.body.date + req.body.timeSelect + '&partySize=' + req.body.partySize,
             method: 'GET',
             headers: options.headers,
             json: true
         }, function(error, response, body){
-            res.render('search-availability', {results: body.results, id:req.param('restaurantId')});
+            res.render('search-availability', { results: body.results, id: req.params.restaurantId });
         });
     }
 });

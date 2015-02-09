@@ -30,7 +30,7 @@ router.post('/:restaurantId', function(req, res){
     }
     else {
         request({
-            uri: options.path + req.param('restaurantId') + '/reservations/provisional/' + req.body.reservationToken + '/confirm',
+            uri: options.path + req.params.restaurantId + '/reservations/provisional/' + req.body.reservationToken + '/confirm',
             method: 'POST',
             headers: options.headers,
             body: req.body,
@@ -39,7 +39,7 @@ router.post('/:restaurantId', function(req, res){
             if (response.statusCode === 201) {
                 res.render('confirm-reservation', {
                     reservationToken: body.reservationToken,
-                    id: req.param('restaurantId'),
+                    id: req.params.restaurantId,
                     confirmationMessage: response.body.message
                 });
             }

@@ -21,14 +21,14 @@ router.use(bodyParser.urlencoded({
 router.post('/:restaurantId', function(req, res){
     req.body.partySize = parseInt(req.body.partySize);
     request({
-        uri: options.path + req.param('restaurantId') + '/reservations',
+        uri: options.path + req.params.restaurantId + '/reservations',
         method: 'POST',
         headers: options.headers,
         body: req.body,
         json: true
     }, function(error, response, body){
         if(response.statusCode === 201){
-            res.render('provision-reservation', {reservationToken: body.reservationToken, id:req.param('restaurantId'), provisionMessage: response.body.message});
+            res.render('provision-reservation', {reservationToken: body.reservationToken, id: req.params.restaurantId, provisionMessage: response.body.message});
         }
         else {
             res.render('provision-error', {provisionMessage: response.body.message});
