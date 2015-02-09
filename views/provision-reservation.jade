@@ -1,21 +1,18 @@
 extends layout
 
 block content
-    span #{provisionMessage}
-    h2 Enter your data to confirm your reservation:
-    form.confirmation-form(name='confirmation', action='/confirm_reservation/#{id}', method='post')
-        input(type="hidden", name="reservationToken", value=reservationToken)
-        div.form-element
-            label First name:
-            input(type='text', name='firstName', id='firstname')
-        div.form-element
-            label Last name:
-            input(type='text', name='lastName', id='lastname')
-        div.form-element
-            label Email:
-            input(type='email', pattern="[^ @]*@[^ @]*", name='emailAddress', id='e-mail')
-        div.form-element
-            label Phone:
-            input(type='tel', name='phoneNumber', id='phone')
-        div.form-element
-            input(type="submit", value="Confirm!")
+    h2.provision-title #{provisionMessage}
+    div#form-container
+        h2.top-title Enter your data to confirm your reservation:
+        form.confirmation-form(name='confirmation', action='/confirm_reservation/#{id}', method='post')
+            input(type="hidden", name="reservationToken", value=reservationToken)
+            div(class='form-element')
+                input(type='text', name='firstName', id='firstname', placeholder='first name')
+            div(class='form-element')
+                input(type='text', name='lastName', id='lastname', placeholder='last name')
+            div(class='form-element')
+                input(type='email', pattern="[^ @]*@[^ @]*", name='emailAddress', id='e-mail', placeholder='e-mail')
+            div(class='form-element')
+                input(type='tel', name='phoneNumber', id='phone', placeholder='phone number')
+            div(class='form-element', id='submit-button')
+                input(type='submit', class='button', value='Confirm your table')

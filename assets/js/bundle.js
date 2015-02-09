@@ -3094,7 +3094,7 @@ $(document).ready(function() {
         $('#restaurant-field').append($('#restaurantpicker option:selected').text() + '<i class="fa fa-angle-down select-arrow"></i>');
     });
 
-    $('.available-hour-button').click(function() {
+    $('.available-button').click(function() {
         $('#offer-popup-'+ $(this).data('index')).toggle('slow');
     });
 
