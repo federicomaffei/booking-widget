@@ -130,6 +130,26 @@ li.offer-line {
     font-size: 12px;
 }
 
+.available-hour {
+    font-family: "franklin-gothic-urw", Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-weight: 100;
+    border-radius: 3px;
+    display: block;
+    border: 1px solid #da3743;
+    color: #fff;
+    padding: .3em .2em;
+    min-width: 4.125rem;
+    margin-left: .5rem;
+    line-height: 1.2em;
+    text-align: center;
+    font-size: .875rem;
+    /*position: relative;*/
+    background: #da3743;
+    margin-bottom: .5rem;
+    /*float: left;*/
+    white-space: nowrap;
+}
+
 #offer-list li {
     list-style-type: none;
 }
@@ -147,8 +167,4 @@ li.offer-line {
 
 #availability-list li {
     list-style-type: none;
-}
-
-.available-hour {
-    font-size: 12px;
 }

@@ -6,7 +6,7 @@ block content
         ul#availability-list
             each item, index in results
                 li.offer-line
-                    button(class='available-hour-button', data-index='#{index}') #{moment(item.dateTime).format('HH:mm')}
+                    button(class='available-hour', data-index='#{index}') #{moment(item.dateTime).format('HH:mm')}
                 form.provision-form(name='provision', action='/provision_reservation/#{id}', method='post')
                     div(class='offer-popup', id='offer-popup-#{index}')
                         input(type="hidden", name="dateTime", value="#{item.dateTime}")
