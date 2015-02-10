@@ -23,6 +23,7 @@ router.use(bodyParser.urlencoded({
 
 router.post('/:restaurantId', function(req, res){
     req.checkBody('date', 'reservation date cannot be in the past').isAfter(moment().subtract(1, 'days'));
+    req.checkBody('date', 'reservation date cannot be empty').notEmpty();
     req.checkBody('timeSelect', 'time slot cannot be empty').notEmpty();
     req.checkBody('partySize', 'partysize has to be an integer').isInt();
     var errors = req.validationErrors();

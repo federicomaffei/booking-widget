@@ -3,11 +3,22 @@ var moment = require('moment');
 
 function addSlotsToOptions(slots){
     for(var index = 0; index < slots.length; index++){
-        var slot = $('<option/>', {
-            text : tc.convertTime(slots[index]),
-            'value' : slots[index]
-        });
-        $('#timepicker').append(slot);
+        var slot;
+        if(index === 0) {
+            slot = $('<option/>', {
+                text : tc.convertTime(slots[index]),
+                'value' : slots[index],
+                'selected': true
+            });
+            $('#timepicker').append(slot);
+        }
+        else {
+            slot = $('<option/>', {
+                text : tc.convertTime(slots[index]),
+                'value' : slots[index]
+            });
+            $('#timepicker').append(slot);
+        }
     }
 }
 
@@ -18,12 +29,14 @@ $(document).ready(function() {
         $('#select-availability').attr('action', '/search_availability/' + restaurantId);
     });
 
-    $('#datepicker').datepicker({
+    var $datepicker = $('#datepicker');
+
+    $datepicker.datepicker({
         dateFormat: 'yy-mm-dd',
         minDate: new Date(),
+        defaultDate: new Date(),
         onSelect: function(dateText) {
-            $('#date-field').empty();
-            $('#date-field').append(moment(dateText).format('MMM Do YYYY') + '<i class="fa fa-angle-down select-arrow"></i>');
+            $('#date-field').empty().append(moment(dateText).format('MMM Do YYYY') + '<i class="fa fa-angle-down select-arrow"></i>');
             $('#timepicker').empty();
             var slots = tc.createSlots(tc.setStart(dateText, 22));
             addSlotsToOptions(slots);
@@ -32,25 +45,22 @@ $(document).ready(function() {
     });
 
     $('#partypicker').change(function() {
-        $('#party-field').empty();
-        $('#party-field').append($('#partypicker option:selected').text() + '<i class="fa fa-angle-down select-arrow"></i>');
+        $('#party-field').empty().append($('#partypicker option:selected').text() + '<i class="fa fa-angle-down select-arrow"></i>');
     });
 
     $('#timepicker').change(function() {
-        $('#time-field').empty();
-        $('#time-field').append($('#timepicker option:selected').text() + '<i class="fa fa-angle-down select-arrow"></i>');
+        $('#time-field').empty().append($('#timepicker option:selected').text() + '<i class="fa fa-angle-down select-arrow"></i>');
     });
 
     $('#restaurantpicker').change(function() {
-        $('#restaurant-field').empty();
-        $('#restaurant-field').append($('#restaurantpicker option:selected').text() + '<i class="fa fa-angle-down select-arrow"></i>');
+        $('#restaurant-field').empty().append('Restaurant ' + $('#restaurantpicker option:selected').text() + '<i class="fa fa-angle-down select-arrow"></i>');
     });
 
     $('.available-button').click(function() {
         $('#offer-popup-'+ $(this).data('index')).toggle('slow');
     });
 
-    var now = tc.createSlots(moment().format('HH'));
-    $('#time-field').append(tc.convertTime(now[0]));
-    addSlotsToOptions(now, 22);
+    var slots = tc.createSlots(moment().format('HH'), 22);
+    $('#time-field').append(tc.convertTime(slots[0]));
+    addSlotsToOptions(slots);
 });
