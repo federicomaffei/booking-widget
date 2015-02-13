@@ -1,19 +1,28 @@
 extends layout
 
 block content
-    div.notice-box
-        h2.provision-title #{provisionMessage}
-    div#form-container
-        h2.top-title Enter your data to confirm your reservation:
-        form.confirmation-form(name='confirmation', action='/confirm_reservation/#{id}', method='post')
-            input(type="hidden", name="reservationToken", value=reservationToken)
-            div(class='form-element')
-                input(class='confirmation-field', type='text', name='firstName', id='firstname', placeholder='first name')
-            div(class='form-element')
-                input(class='confirmation-field', type='text', name='lastName', id='lastname', placeholder='last name')
-            div(class='form-element')
-                input(class='confirmation-field', type='email', pattern="[^ @]*@[^ @]*", name='emailAddress', id='e-mail', placeholder='e-mail')
-            div(class='form-element')
-                input(class='confirmation-field', type='tel', name='phoneNumber', id='phone', placeholder='phone number')
-            div(class='form-element', id='submit-button')
-                input(type='submit', class='button', value='Confirm your table')
+    div#widget-container
+        div#home-logo
+            a(href='/')
+                span(class='link-spanner')
+        div.notice-box
+            h2.provision-title #{provisionMessage}
+        div#form-container
+            h2.top-title Enter your data to confirm your reservation:
+            form.confirmation-form(name='confirmation', action='/confirm_reservation/#{id}', method='post')
+                input(type="hidden", name="reservationToken", value=reservationToken)
+                div(class='form-element')
+                    input(class='confirmation-field', type='text', name='firstName', id='firstname', placeholder='first name')
+                div(class='form-element')
+                    input(class='confirmation-field', type='text', name='lastName', id='lastname', placeholder='last name')
+                div(class='form-element')
+                    input(class='confirmation-field', type='email', pattern="[^ @]*@[^ @]*", name='emailAddress', id='e-mail', placeholder='e-mail')
+                div(class='form-element')
+                    input(class='confirmation-field', type='tel', name='phoneNumber', id='phone', placeholder='phone number')
+                div(class='form-element', id='submit-button')
+                    input(type='submit', class='button', value='Confirm your table')
+block preview
+    div#preview-container
+        pre
+            code(class='json') The API has returned a response with status code #{responseStatus} and body:
+                p #{responseBody}

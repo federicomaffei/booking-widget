@@ -1,16 +1,25 @@
 extends layout
 
 block content
-    div#body-container
-        h2.top-title #{results.length} tables available for #{results[0].partySize} people on #{moment(results[0].dateTime).format('ddd, Do MMMM YYYY')}:
-        ul#availability-list
-            each item, index in results
-                button(class='available-button', data-index='#{index}') #{moment(item.dateTime).format('HH:mm')}
-                form.provision-form(name='provision', action='/provision_reservation/#{id}', method='post')
-                    div(class='offer-popup', id='offer-popup-#{index}')
-                        input(type="hidden", name="dateTime", value="#{item.dateTime}")
-                        input(type="hidden", name="partySize", value="#{item.partySize}")
-                        li.offer-title Offers available:
-                        each offer in item.offers
-                            li.offer-line #{offer.name}
-                        button(class='available-button') Book!
+    div#widget-container
+        div#home-logo
+            a(href='/')
+                span(class='link-spanner')
+        div#body-container
+            h2.top-title #{results.length} tables available for #{results[0].partySize} people on #{moment(results[0].dateTime).format('ddd, Do MMMM YYYY')}:
+            ul#availability-list
+                each item, index in results
+                    button(class='available-button', data-index='#{index}') #{moment(item.dateTime).format('HH:mm')}
+                    form.provision-form(name='provision', action='/provision_reservation/#{id}', method='post')
+                        div(class='offer-popup', id='offer-popup-#{index}')
+                            input(type='hidden', name='dateTime', value='#{item.dateTime}')
+                            input(type='hidden', name='partySize', value='#{item.partySize}')
+                            li.offer-title Offers available:
+                            each offer in item.offers
+                                li.offer-line #{offer.name}
+                            button(class='available-button') Book!
+block preview
+    div#preview-container
+        pre
+            code(class='json') The API has returned a response with status code #{responseStatus} and body:
+                p #{responseBody}

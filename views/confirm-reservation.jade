@@ -1,5 +1,14 @@
 extends layout
 
 block content
-    div.notice-box
-        h2.top-title #{confirmationMessage}
+    div#widget-container
+        div#home-logo
+            a(href='/')
+                span(class='link-spanner')
+        div.notice-box
+            h2.top-title #{confirmationMessage}
+block preview
+    div#preview-container
+        pre
+            code(class='json') The API has returned a response with status code #{responseStatus} and body:
+                p #{responseBody}
