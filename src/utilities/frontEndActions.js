@@ -56,9 +56,7 @@ $(document).ready(function() {
         $('#restaurant-field').empty().append('Restaurant ' + $('#restaurantpicker option:selected').text() + '<i class="fa fa-angle-down select-arrow"></i>');
     });
 
-    $('.available-button').click(function() {
-        $('#offer-popup-'+ $(this).data('index')).toggle('slow');
-    });
+    $('.offers-tip').tooltip();
 
     var slots = tc.createSlots(moment().format('HH'), 22);
     $('#time-field').append(tc.convertTime(slots[0]));

@@ -29,7 +29,6 @@ router.post('/:restaurantId', function(req, res){
     var errors = req.validationErrors();
     if(errors){
         res.status(400).send('There have been validation errors');
-        return;
     }
     else {
         request({
@@ -43,6 +42,7 @@ router.post('/:restaurantId', function(req, res){
                 request: req.body,
                 responseBody: JSON.stringify(body, undefined, 2),
                 responseStatus: response.statusCode,
+                offer: body.results[0].name,
                 id: req.params.restaurantId });
         });
     }

@@ -60,7 +60,7 @@ option {
     position: relative;
     width: 100%;
     height: 20%;
-    background: #ffffff url(/img/OTlogo.png) 50% 50% no-repeat;
+    background: url(/img/OTlogo.png) 50% 50% no-repeat;
     background-size: 90%;
 }
 
@@ -85,13 +85,14 @@ option {
 
 #body-container {
     width: 100%;
-    height: 100%;
+    height: 80%;
 }
 
 #widget-container {
     width: 300px;
     height: 400px;
     float: left;
+    background-color: #ffffff;
 }
 
 #preview-container {
@@ -129,9 +130,18 @@ a:visited {
 .top-title {
     padding-left: 10px;
     padding-right: 10px;
+    font-size: 90%;
+    font-family: "franklin-gothic-urw", Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+.select-slot-title {
+    width: 100%;
+    text-align: center;
     font-size: 80%;
     font-family: "franklin-gothic-urw", Arial, "Helvetica Neue", Helvetica, sans-serif;
-    background-color: #ffffff;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .provision-title {
@@ -139,7 +149,6 @@ a:visited {
     padding-right: 10px;
     font-size: 14px;
     font-family: "franklin-gothic-urw", Arial, "Helvetica Neue", Helvetica, sans-serif;
-    background-color: #ffffff;
 }
 
 .form-element {
@@ -171,14 +180,14 @@ li.offer-line {
     display: block;
     border: 1px solid #da3743;
     color: #fff;
-    padding: .3em .2em;
     min-width: 4.125rem;
     line-height: 1.2em;
     text-align: center;
-    font-size: .875rem;
+    font-size: .9rem;
     background: #da3743;
-    margin-bottom: .5rem;
     white-space: nowrap;
+    margin: 15px auto 15px auto;
+    padding: 3px 6px 3px 6px;
 }
 
 #offer-list li {
@@ -190,16 +199,18 @@ li.offer-line {
 }
 
 #availability-list {
-    background-color: #ffffff;
     margin-top: 0;
     margin-bottom: 0;
-    padding-top: 15px;
-    padding-left: 15px;
-    padding-bottom: 5px;
+    padding: 0px 10px 0px 10px;
+    height: 60%;
 }
 
-#availability-list li {
-    list-style-type: none;
+
+.availability-grid-third {
+    width: 33%;
+    float: left;
+    position: relative;
+    top: 10px;
 }
 
 h2 {
@@ -215,7 +226,7 @@ button:focus {
     outline: 0;
 }
 
-input {
+.index-input {
     width: 290px;
     height: auto;
     border: none;
@@ -230,14 +241,26 @@ input:focus {
 }
 
 .confirmation-field {
+    width: 290px;
+    height: auto;
+    border: none;
+    font-family: "franklin-gothic-urw", Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-weight: 100;
+    font-size: 100%;
+    padding: 5px 0 5px 10px;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
 }
 
 .notice-box {
-    padding-bottom: 10px;
-    background: #ffffff;
+    height: 20%;
+}
+
+.offer-box {
+    width: 100%;
+    height: 20%;
+    position: relative;
 }
 
 .link-spanner{
@@ -247,4 +270,14 @@ input:focus {
     top: 0;
     left: 0;
     z-index: 1;
+}
+
+.offers-tip{
+    width: 100%;
+    text-align: center;
+    font-size: 80%;
+    font-family: "franklin-gothic-urw", Arial, "Helvetica Neue", Helvetica, sans-serif;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
 }

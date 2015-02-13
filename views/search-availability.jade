@@ -6,18 +6,17 @@ block content
             a(href='/')
                 span(class='link-spanner')
         div#body-container
-            h2.top-title #{results.length} tables available for #{results[0].partySize} people on #{moment(results[0].dateTime).format('ddd, Do MMMM YYYY')}:
-            ul#availability-list
+            div.notice-box
+                h2.top-title Thanks for the request. There are #{results.length} tables available for #{results[0].partySize} people on #{moment(results[0].dateTime).format('dddd, Do MMMM YYYY')}:
+            div#availability-list
                 each item, index in results
-                    button(class='available-button', data-index='#{index}') #{moment(item.dateTime).format('HH:mm')}
-                    form.provision-form(name='provision', action='/provision_reservation/#{id}', method='post')
-                        div(class='offer-popup', id='offer-popup-#{index}')
+                    div.availability-grid-third
+                        form.provision-form(name='provision', action='/provision_reservation/#{id}', method='post')
                             input(type='hidden', name='dateTime', value='#{item.dateTime}')
                             input(type='hidden', name='partySize', value='#{item.partySize}')
-                            li.offer-title Offers available:
-                            each offer in item.offers
-                                li.offer-line #{offer.name}
-                            button(class='available-button') Book!
+                            input(type='submit', class='available-button', id='offer-popup-#{index}', data-index='#{index}', value=moment(item.dateTime).format('HH:mm'))
+            div.offer-box
+                a(class='offers-tip', title=results[0].offers[0].name) See the offers available for this restaurant.
 block preview
     div#preview-container
         pre

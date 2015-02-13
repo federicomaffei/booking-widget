@@ -26,7 +26,6 @@ router.post('/:restaurantId', function(req, res){
     var errors = req.validationErrors();
     if(errors){
         res.status(400).send('There have been validation errors');
-        return;
     }
     else {
         request({
