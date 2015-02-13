@@ -40,7 +40,9 @@ router.post('/:restaurantId', function(req, res){
                 res.render('confirm-reservation', {
                     reservationToken: body.reservationToken,
                     id: req.params.restaurantId,
-                    confirmationMessage: response.body.message
+                    confirmationMessage: response.body.message,
+                    responseBody: JSON.stringify(body, undefined, 2),
+                    responseStatus: response.statusCode
                 });
             }
             else {
@@ -49,5 +51,6 @@ router.post('/:restaurantId', function(req, res){
         });
     }
 });
+
 
 module.exports = router;

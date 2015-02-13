@@ -28,10 +28,18 @@ router.post('/:restaurantId', function(req, res){
         json: true
     }, function(error, response, body){
         if(response.statusCode === 201){
-            res.render('provision-reservation', {reservationToken: body.reservationToken, id: req.params.restaurantId, provisionMessage: response.body.message});
+            res.render('provision-reservation', {
+                reservationToken: body.reservationToken,
+                id: req.params.restaurantId,
+                provisionMessage: response.body.message,
+                responseBody: JSON.stringify(body, undefined, 2),
+                responseStatus: response.statusCode
+            });
         }
         else {
-            res.render('provision-error', {provisionMessage: response.body.message});
+            res.render('provision-error', {
+                provisionMessage: response.body.message
+            });
         }
     });
 });

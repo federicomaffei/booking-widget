@@ -38,7 +38,12 @@ router.post('/:restaurantId', function(req, res){
             headers: options.headers,
             json: true
         }, function(error, response, body){
-            res.render('search-availability', { results: body.results, id: req.params.restaurantId });
+            res.render('search-availability', {
+                results: body.results,
+                request: req.body,
+                responseBody: JSON.stringify(body, undefined, 2),
+                responseStatus: response.statusCode,
+                id: req.params.restaurantId });
         });
     }
 });
