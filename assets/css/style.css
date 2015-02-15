@@ -73,14 +73,9 @@ option {
     height: 80%;
 }
 
-#form-container {
-    width: 100%;
-    height: 100%;
-}
-
 .confirmation-form {
     background-color: white;
-    height: 80%;
+    height: 60%;
 }
 
 #body-container {
@@ -119,6 +114,10 @@ option {
     border-radius: 0;
 }
 
+#confirm-button {
+    height: 25%;
+}
+
 h2 {
     font-weight: 100;
 }
@@ -132,6 +131,14 @@ a:visited {
     padding-right: 10px;
     font-size: 90%;
     font-family: "franklin-gothic-urw", Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+.confirmation-notice-box {
+    height: 15%;
+}
+
+.confirmation-title-box {
+    height: 5%;
 }
 
 .select-slot-title {
@@ -154,6 +161,11 @@ a:visited {
 .form-element {
     position: relative;
     height: 20%;
+}
+
+.confirmation-form-element {
+    position: relative;
+    height: 15%;
 }
 
 div.ui-datepicker{
@@ -242,15 +254,12 @@ input:focus {
 
 .confirmation-field {
     width: 290px;
-    height: auto;
+    height: 18.75%;
     border: none;
     font-family: "franklin-gothic-urw", Arial, "Helvetica Neue", Helvetica, sans-serif;
     font-weight: 100;
     font-size: 100%;
-    padding: 5px 0 5px 10px;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    padding: 0px 0 0px 10px;
 }
 
 .notice-box {

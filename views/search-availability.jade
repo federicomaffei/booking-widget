@@ -16,7 +16,7 @@ block content
                             input(type='hidden', name='partySize', value='#{item.partySize}')
                             input(type='submit', class='available-button', id='offer-popup-#{index}', data-index='#{index}', value=moment(item.dateTime).format('HH:mm'))
             div.offer-box
-                a(class='offers-tip', title=results[0].offers[0].name) See the offers available for this restaurant.
+                a(class='offers-tip', data-tooltip=results[0].offers, title='') See the offers available for this restaurant.
 block preview
     div#preview-container
         pre

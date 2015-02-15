@@ -3070,6 +3070,14 @@ function addSlotsToOptions(slots){
     }
 }
 
+$(function () {
+    $(document).tooltip({
+        content: function () {
+            return $(this).prop('title');
+        }
+    });
+});
+
 $(document).ready(function() {
 
     $('#select-availability').submit(function() {
@@ -3078,6 +3086,8 @@ $(document).ready(function() {
     });
 
     var $datepicker = $('#datepicker');
+    var $offersTip = $('.offers-tip');
+    var offersList = '';
 
     $datepicker.datepicker({
         dateFormat: 'yy-mm-dd',
@@ -3104,7 +3114,18 @@ $(document).ready(function() {
         $('#restaurant-field').empty().append('Restaurant ' + $('#restaurantpicker option:selected').text() + '<i class="fa fa-angle-down select-arrow"></i>');
     });
 
-    $('.offers-tip').tooltip();
+    if($('.offers-tip').length) {
+        $offersTip.data('tooltip').forEach(function(offer){
+            offersList = offersList + '<p>' + offer.name + '</p>';
+            console.log(offer.name);
+        });
+
+        $offersTip.attr('title', offersList).tooltip({
+            content: function () {
+                return $(this).prop('title');
+            }
+        });
+    }
 
     var slots = tc.createSlots(moment().format('HH'), 22);
     $('#time-field').append(tc.convertTime(slots[0]));
