@@ -4,7 +4,7 @@
   "description": "booking widget for OpenTable API",
   "main": "app.js",
   "engines": {
-    "node": "0.10.33"
+    "node": "0.10.35"
   },
   "scripts": {
     "test": "mocha --reporter spec --timeout 10s --recursive",
