@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "description": "booking widget for OpenTable API",
   "main": "app.js",
+  "engines": {
+    "node": "0.10.33"
+  },
   "scripts": {
     "test": "mocha --reporter spec --timeout 10s --recursive",
     "browserify": "browserify src/utilities/frontEndActions.js -o assets/js/bundle.js"
