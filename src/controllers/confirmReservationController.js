@@ -45,7 +45,11 @@ router.post('/:restaurantId', function(req, res){
                 });
             }
             else {
-                res.render('confirm-error', {confirmationMessage: response.body.message});
+                res.render('confirm-error', {
+                    confirmationMessage: response.body.message,
+                    responseBody: JSON.stringify(body, undefined, 2),
+                    responseStatus: response.statusCode
+                });
             }
         });
     }

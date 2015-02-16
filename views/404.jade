@@ -1,6 +1,14 @@
 extends layout
 
 block content
-    span The requested resource does not exist yet here.
-    p
-    a(href='/') Back to home page
+    div#widget-container
+        div#home-logo
+            a(href='/')
+                span(class='link-spanner')
+        div.confirmation-box
+            h2.top-title Sorry, the requested resource does not exist yet here.
+            h2.top-title
+                a(href='/') Back to home page
+        div#button-container
+            input(type='button', class='form-button', id='show-response-button', value='Show the response')
+            input(type='button', class='form-button', id='hide-response-button', value='Hide the response')

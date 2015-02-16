@@ -1,6 +1,19 @@
 extends layout
 
 block content
-    span #{provisionMessage}
-    p
-    a(href='/') Back to search
+    div#widget-container
+        div#home-logo
+            a(href='/')
+                span(class='link-spanner')
+        div.confirmation-box
+            h2.top-title #{provisionMessage}
+            h2.top-title
+                a(href='/') Back to search
+        div#button-container
+            input(type='button', class='form-button', id='show-response-button', value='Show the response')
+            input(type='button', class='form-button', id='hide-response-button', value='Hide the response')
+block preview
+    div#preview-container
+        pre
+            code(class='json') The API has returned a response with status code #{responseStatus} and body:
+                p #{responseBody}
