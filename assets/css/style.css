@@ -61,14 +61,23 @@ div#widget-container {
 
 div#preview-container {
     width: 33%;
-    height: 390px;
+    height: 400px;
     margin-left: 300px;
     background-color: #ffffff;
+    display: none;
+}
+
+div#preview-header {
+    width: 100%;
+    height: 5%;
+}
+
+div#preview-content {
+    width: 100%;
+    height: 95%;
     font-size: 80%;
     word-wrap: break-word;
-    padding: 10px 10px 0px 10px;
-    display: none;
-    overflow: scroll;
+    overflow: auto;
 }
 
 div.availability-grid-third {
@@ -240,6 +249,12 @@ h2.provision-title {
 
 }
 
+/*Paragraph*/
+
+.response-paragraph {
+    padding: 0 20px 0 20px;
+}
+
 /*Spans*/
 
 span.link-spanner {
@@ -263,4 +278,3 @@ i.select-arrow {
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: 200;
 }
-

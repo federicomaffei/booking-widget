@@ -21,6 +21,8 @@ block content
             input(type='button', class='form-button', id='hide-response-button', value='Hide the response')
 block preview
     div#preview-container
-        pre
-            code(class='json') The API has returned a response with status code #{responseStatus} and body:
-                p #{responseBody}
+        div#preview-header
+        div#preview-content
+            pre
+                code(class='json response-paragraph') The API has returned a response with status code #{responseStatus} and body:
+                    p(class='response-paragraph') #{responseBody}

@@ -76,7 +76,7 @@ $(document).ready(function() {
 
     if($offersTip.length) {
         $offersTip.data('tooltip').forEach(function(offer){
-            offersList = offersList + '<p>' + offer.name + '</p>';
+            offersList = offersList + '<p class="offer-paragraph">' + offer.name + '</p>';
         });
 
         $offersTip.attr('title', offersList).tooltip({
