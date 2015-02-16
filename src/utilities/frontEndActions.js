@@ -66,10 +66,17 @@ $(document).ready(function() {
         $('#restaurant-field').empty().append('Restaurant ' + $('#restaurantpicker option:selected').text() + '<i class="fa fa-angle-down select-arrow"></i>');
     });
 
-    if($('.offers-tip').length) {
+    $('#show-response-button').click(function(){
+        $('#preview-container').show('fast');
+    });
+
+    $('#hide-response-button').click(function(){
+        $('#preview-container').hide('fast');
+    });
+
+    if($offersTip.length) {
         $offersTip.data('tooltip').forEach(function(offer){
             offersList = offersList + '<p>' + offer.name + '</p>';
-            console.log(offer.name);
         });
 
         $offersTip.attr('title', offersList).tooltip({

@@ -17,6 +17,9 @@ block content
                             input(type='submit', class='available-button', id='offer-popup-#{index}', data-index='#{index}', value=moment(item.dateTime).format('HH:mm'))
             div.offer-box
                 a(class='offers-tip', data-tooltip=results[0].offers, title='') See the offers available for this restaurant.
+        div#button-container
+            input(type='button', id='show-response-button', value='Show the response')
+            input(type='button', id='hide-response-button', value='Hide the response')
 block preview
     div#preview-container
         pre

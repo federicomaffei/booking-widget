@@ -16,6 +16,9 @@ block content
             input(class='confirmation-field', type='email', pattern="[^ @]*@[^ @]*", name='emailAddress', id='e-mail', placeholder='e-mail')
             input(class='confirmation-field', type='tel', name='phoneNumber', id='phone', placeholder='phone number')
             input(type='submit', class='button', id='confirm-button', value='Confirm your table')
+        div#button-container
+            input(type='button', id='show-response-button', value='Show the response')
+            input(type='button', id='hide-response-button', value='Hide the response')
 block preview
     div#preview-container
         pre

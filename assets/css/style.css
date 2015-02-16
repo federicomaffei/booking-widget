@@ -168,6 +168,10 @@ a:visited {
     height: 15%;
 }
 
+.confirmation-box {
+    height: 80%;
+}
+
 div.ui-datepicker{
     font-size:10px
 }
@@ -196,6 +200,40 @@ li.offer-line {
     line-height: 1.2em;
     text-align: center;
     font-size: .9rem;
+    background: #da3743;
+    white-space: nowrap;
+    margin: 15px auto 15px auto;
+    padding: 3px 6px 3px 6px;
+}
+
+#show-response-button {
+    font-family: "franklin-gothic-urw", Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-weight: 100;
+    border-radius: 3px;
+    display: block;
+    border: 1px solid #da3743;
+    color: #fff;
+    min-width: 4.125rem;
+    line-height: 1.2em;
+    text-align: center;
+    font-size: 1.1rem;
+    background: #da3743;
+    white-space: nowrap;
+    margin: 15px auto 15px auto;
+    padding: 3px 6px 3px 6px;
+}
+
+#hide-response-button {
+    font-family: "franklin-gothic-urw", Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-weight: 100;
+    border-radius: 3px;
+    display: block;
+    border: 1px solid #da3743;
+    color: #fff;
+    min-width: 4.125rem;
+    line-height: 1.2em;
+    text-align: center;
+    font-size: 1.1rem;
     background: #da3743;
     white-space: nowrap;
     margin: 15px auto 15px auto;
@@ -294,4 +332,8 @@ input:focus {
 .ui-tooltip-content {
     font-size: 70%;
     font-family: "franklin-gothic-urw", Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+#preview-container {
+    display: none;
 }

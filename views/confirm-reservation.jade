@@ -5,8 +5,11 @@ block content
         div#home-logo
             a(href='/')
                 span(class='link-spanner')
-        div.notice-box
+        div.confirmation-box
             h2.top-title #{confirmationMessage}
+        div#button-container
+            input(type='button', id='show-response-button', value='Show the response')
+            input(type='button', id='hide-response-button', value='Hide the response')
 block preview
     div#preview-container
         pre
