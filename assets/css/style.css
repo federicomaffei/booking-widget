@@ -60,13 +60,15 @@ div#widget-container {
 }
 
 div#preview-container {
+    width: 33%;
+    height: 390px;
     margin-left: 300px;
     background-color: #ffffff;
-    font-size: 70%;
-    display: block;
+    font-size: 80%;
     word-wrap: break-word;
-    padding: 10px 10px 10px 10px;
+    padding: 10px 10px 0px 10px;
     display: none;
+    overflow: scroll;
 }
 
 div.availability-grid-third {
