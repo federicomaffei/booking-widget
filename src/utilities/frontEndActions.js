@@ -45,6 +45,8 @@ $(document).ready(function() {
         dateFormat: 'yy-mm-dd',
         minDate: new Date(),
         defaultDate: new Date(),
+        showOtherMonths: true,
+        dayNamesMin: ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'],
         onSelect: function(dateText) {
             $('#date-field').empty().append(moment(dateText).format('MMM Do YYYY') + '<i class="fa fa-angle-down select-arrow"></i>');
             $('#timepicker').empty();
