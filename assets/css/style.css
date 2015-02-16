@@ -1,3 +1,5 @@
+/*Generic*/
+
 body {
     font-size: 1.2em;
     font-weight: normal;
@@ -6,6 +8,11 @@ body {
     margin: 0;
     cursor: default;
     background: #e0ddda;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+input, select, textarea, button, .ui-tooltip-content {
+    font-family:inherit;
 }
 
 select {
@@ -19,43 +26,57 @@ select {
     z-index: 2;
 }
 
-a.select-link {
-    display: block;
-    position: relative;
-    padding: 1rem;
-    height: 32px;
-    z-index: 1;
-    font-family: "franklin-gothic-urw", Arial, "Helvetica Neue", Helvetica, sans-serif;
-    font-weight: 100;
-    font-size: 100%;
-    cursor: pointer;
-    color: #333;
-    background-color: #FFF;
-}
-
 option {
-    font-weight: normal;
     display: block;
     padding: 0 2px 1px;
     white-space: pre;
-    min-height: 1.2em;
 }
 
-.select-arrow {
-    color: #999;
-    float: right;
+h2 {
+    display: block;
+    font-weight: 100;
+    -webkit-margin-before: 0px;
+    -webkit-margin-after: 0px;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
 }
 
-#datepicker {
-    height: 100%;
+/*Containers*/
+
+div#app-container {
+    width: 900px
+}
+
+div#body-container {
     width: 100%;
-    position: absolute;
-    opacity: 0;
-    top: 0;
-    z-index: 2;
+    height: 80%;
 }
 
-#home-logo {
+div#widget-container {
+    width: 300px;
+    height: 400px;
+    float: left;
+    background-color: #ffffff;
+}
+
+div#preview-container {
+    margin-left: 300px;
+    background-color: #ffffff;
+    font-size: 70%;
+    display: block;
+    word-wrap: break-word;
+    padding: 10px 10px 10px 10px;
+    display: none;
+}
+
+div.availability-grid-third {
+    width: 33%;
+    float: left;
+    position: relative;
+    top: 10px;
+}
+
+div#home-logo {
     display: block;
     position: relative;
     width: 100%;
@@ -64,253 +85,162 @@ option {
     background-size: 90%;
 }
 
-#app-container {
-    width: 900px
-}
-
-#select-availability {
-    width: 100%;
-    height: 80%;
-}
-
-.confirmation-form {
-    background-color: white;
-    height: 60%;
-}
-
-#body-container {
-    width: 100%;
-    height: 80%;
-}
-
-#widget-container {
-    width: 300px;
-    height: 400px;
-    float: left;
-    background-color: #ffffff;
-}
-
-#preview-container {
-    margin-left: 300px;
-    background-color: #ffffff;
-    font-family: "franklin-gothic-urw", Arial, "Helvetica Neue", Helvetica, sans-serif;
-    font-size: 70%;
-    display: block;
-    word-wrap: break-word;
-    padding: 10px 10px 10px 10px;
-}
-
-
-.button {
-    width: 100%;
-    height: 100%;
-    background-color: #da3743;
-    color: #fff;
-    cursor: pointer;
-    font-family: "franklin-gothic-urw", Arial, "Helvetica Neue", Helvetica, sans-serif;
-    font-size: 100%;
-    font-weight: 100;
-    border: 0;
-    border-radius: 0;
-}
-
-#confirm-button {
-    height: 25%;
-}
-
-h2 {
-    font-weight: 100;
-}
-
-a:visited {
-    color: black;
-}
-
-.top-title {
-    padding-left: 10px;
-    padding-right: 10px;
-    font-size: 90%;
-    font-family: "franklin-gothic-urw", Arial, "Helvetica Neue", Helvetica, sans-serif;
-}
-
-.confirmation-notice-box {
-    height: 15%;
-}
-
-.confirmation-title-box {
-    height: 5%;
-}
-
-.select-slot-title {
-    width: 100%;
-    text-align: center;
-    font-size: 80%;
-    font-family: "franklin-gothic-urw", Arial, "Helvetica Neue", Helvetica, sans-serif;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-.provision-title {
-    padding-left: 10px;
-    padding-right: 10px;
-    font-size: 14px;
-    font-family: "franklin-gothic-urw", Arial, "Helvetica Neue", Helvetica, sans-serif;
-}
-
-.form-element {
+div.form-element {
     position: relative;
     height: 20%;
-}
-
-.confirmation-form-element {
-    position: relative;
-    height: 15%;
-}
-
-.confirmation-box {
-    height: 80%;
 }
 
 div.ui-datepicker{
     font-size:10px
 }
 
-form.provision-form {
-    margin-bottom: 20px;
+div.confirmation-notice-box {
+    height: 15%;
 }
 
-div.offer-popup {
-    font-family: "franklin-gothic-urw", Arial, "Helvetica Neue", Helvetica, sans-serif;
-    font-size: 13px;
+div.confirmation-title-box {
+    height: 5%;
 }
 
-li.offer-line {
-    margin-bottom: .5rem;
+div.confirmation-box {
+    height: 80%;
 }
 
-.available-button {
-    font-family: "franklin-gothic-urw", Arial, "Helvetica Neue", Helvetica, sans-serif;
-    font-weight: 100;
-    border-radius: 3px;
-    display: block;
-    border: 1px solid #da3743;
-    color: #fff;
-    min-width: 4.125rem;
-    line-height: 1.2em;
-    text-align: center;
-    font-size: .9rem;
-    background: #da3743;
-    white-space: nowrap;
-    margin: 15px auto 15px auto;
-    padding: 3px 6px 3px 6px;
+div.notice-box {
+    height: 20%;
 }
 
-#show-response-button {
-    font-family: "franklin-gothic-urw", Arial, "Helvetica Neue", Helvetica, sans-serif;
-    font-weight: 100;
-    border-radius: 3px;
-    display: block;
-    border: 1px solid #da3743;
-    color: #fff;
-    min-width: 4.125rem;
-    line-height: 1.2em;
-    text-align: center;
-    font-size: 1.1rem;
-    background: #da3743;
-    white-space: nowrap;
-    margin: 15px auto 15px auto;
-    padding: 3px 6px 3px 6px;
+div.offer-box {
+    height: 20%;
+    position: relative;
 }
 
-#hide-response-button {
-    font-family: "franklin-gothic-urw", Arial, "Helvetica Neue", Helvetica, sans-serif;
-    font-weight: 100;
-    border-radius: 3px;
-    display: block;
-    border: 1px solid #da3743;
-    color: #fff;
-    min-width: 4.125rem;
-    line-height: 1.2em;
-    text-align: center;
-    font-size: 1.1rem;
-    background: #da3743;
-    white-space: nowrap;
-    margin: 15px auto 15px auto;
-    padding: 3px 6px 3px 6px;
-}
-
-#offer-list li {
-    list-style-type: none;
-}
-
-.offer-popup {
-    display: none;
-}
-
-#availability-list {
+div#availability-list {
     margin-top: 0;
     margin-bottom: 0;
     padding: 0px 10px 0px 10px;
     height: 60%;
 }
 
+/*Links*/
 
-.availability-grid-third {
-    width: 33%;
-    float: left;
-    position: relative;
-    top: 10px;
-}
-
-h2 {
+a.select-link {
     display: block;
-    font-size: 1.5em;
-    -webkit-margin-before: 0px;
-    -webkit-margin-after: 0px;
-    -webkit-margin-start: 0px;
-    -webkit-margin-end: 0px;
-}
-
-button:focus {
-    outline: 0;
-}
-
-.index-input {
-    width: 290px;
-    height: auto;
-    border: none;
-    font-family: "franklin-gothic-urw", Arial, "Helvetica Neue", Helvetica, sans-serif;
+    position: relative;
+    padding: 1rem;
+    height: 32px;
+    z-index: 1;
     font-weight: 100;
     font-size: 100%;
-    padding: 5px 0 5px 10px;
+    cursor: pointer;
+    color: #333;
+    background-color: #FFF;
+}
+
+a.offers-tip {
+    width: 100%;
+    text-align: center;
+    font-size: 80%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+a:visited {
+    color: black;
+}
+
+/*Forms*/
+
+form#select-availability {
+    height: 100%;
+}
+
+form.confirmation-form {
+    background-color: white;
+    height: 60%;
+}
+
+form.provision-form {
+    margin-bottom: 20px;
+}
+
+/*Input*/
+
+input#datepicker {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    z-index: 2;
+    cursor: pointer;
+}
+
+input.button {
+    width: 100%;
+    height: 100%;
+    background-color: #da3743;
+    color: #fff;
+    cursor: pointer;
+    font-size: 100%;
+    font-weight: 100;
+    border: 0;
+    border-radius: 0;
+}
+
+input.confirmation-field {
+    width: 290px;
+    height: 18.75%;
+    border: none;
+    font-weight: 100;
+    font-size: 100%;
+    padding: 0 0 0 10px;
+}
+
+input#confirmation-button {
+    height: 25%;
+}
+
+input.form-button {
+    font-weight: 100;
+    border-radius: 3px;
+    display: block;
+    border: 1px solid #da3743;
+    color: #fff;
+    min-width: 4.125rem;
+    line-height: 1.2em;
+    text-align: center;
+    font-size: 1rem;
+    background: #da3743;
+    white-space: nowrap;
+    margin: 15px auto 15px auto;
+    padding: 3px 6px 3px 6px;
 }
 
 input:focus {
     outline: 0;
 }
 
-.confirmation-field {
-    width: 290px;
-    height: 18.75%;
-    border: none;
-    font-family: "franklin-gothic-urw", Arial, "Helvetica Neue", Helvetica, sans-serif;
-    font-weight: 100;
-    font-size: 100%;
-    padding: 0px 0 0px 10px;
+/*Titles*/
+
+h2.top-title {
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 90%;
 }
 
-.notice-box {
-    height: 20%;
+h2.provision-title {
+    padding-left: 10px;
+    padding-right: 10px;
+    font-weight: normal;
+    font-size: 70%;
+
 }
 
-.offer-box {
-    width: 100%;
-    height: 20%;
-    position: relative;
-}
+/*Spans*/
 
-.link-spanner {
+span.link-spanner {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -319,21 +249,16 @@ input:focus {
     z-index: 1;
 }
 
-.offers-tip {
-    width: 100%;
-    text-align: center;
-    font-size: 80%;
-    font-family: "franklin-gothic-urw", Arial, "Helvetica Neue", Helvetica, sans-serif;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+/*Special Elements*/
+
+i.select-arrow {
+    color: #999;
+    float: right;
 }
 
 .ui-tooltip-content {
     font-size: 70%;
-    font-family: "franklin-gothic-urw", Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 200;
 }
 
-#preview-container {
-    display: none;
-}
