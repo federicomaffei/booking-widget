@@ -2,6 +2,7 @@
 
 var express = require('express'),
     dotenv = require('dotenv'),
+    favicon = require('serve-favicon'),
     app = express();
 
 dotenv.load();
@@ -12,6 +13,7 @@ app.locals.restaurants = require('./config/restaurants.json');
 app.set('view engine', 'jade');
 
 app.use(express.static(__dirname + '/assets'));
+app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use('/', require('./src/controllers/indexController'));
 app.use('/search_availability', require('./src/controllers/searchAvailabilityController'));
 app.use('/provision_reservation', require('./src/controllers/provisionReservationController'));
