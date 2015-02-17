@@ -45,6 +45,7 @@ router.post('/:restaurantId', function(req, res){
                     responseStatus: response.statusCode,
                     requestMethod: method,
                     requestPath: uri,
+                    requestBody: JSON.stringify(req.body, undefined, 2),
                     requestHeaders: JSON.stringify(options.headers, undefined, 2),
                     id: req.params.restaurantId
                 });
