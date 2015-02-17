@@ -1,15 +1,17 @@
 'use strict';
 
-var express = require('express'),
-    bodyParser = require('body-parser'),
+var bodyParser = require('body-parser'),
+    config = require('../../config'),
+    express = require('express'),
     expressValidator = require('express-validator'),
-    request = require('request'),
+    moment = require('moment'),
     options = {
-        path: 'https://sandbox-api.opentable.co.uk/v1/restaurants/',
+        path: config.apiPath,
         headers: {
-            'Authorization': 'token ' + process.env.WIDGET_API_KEY
+            'Authorization': config.authToken
         }
     },
+    request = require('request'),
     router = express.Router();
 
 router.use(bodyParser.json());
@@ -19,13 +21,13 @@ router.use(bodyParser.urlencoded({
 }));
 
 router.post('/:restaurantId', function(req, res){
-    req.checkBody('firstName', 'customer first name cannot be empty').notEmpty();
-    req.checkBody('lastName', 'customer last name cannot be empty').notEmpty();
-    req.checkBody('emailAddress', 'customer email not valid').isEmail();
-    req.checkBody('phoneNumber', 'customer phone number cannot be empty').notEmpty();
+    req.checkBody('firstName', config.messages.emptyFirstName).notEmpty();
+    req.checkBody('lastName', config.messages.emptyLastName).notEmpty();
+    req.checkBody('emailAddress', config.messages.invalidEmail).isEmail();
+    req.checkBody('phoneNumber', config.messages.emptyPhone).notEmpty();
     var errors = req.validationErrors();
     if(errors){
-        res.status(400).send('There have been validation errors');
+        res.status(400).send(config.messages.genericValidationError);
     }
     else {
         var uri = options.path + req.params.restaurantId + '/reservations/provisional/' + req.body.reservationToken + '/confirm',

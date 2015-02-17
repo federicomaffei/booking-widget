@@ -1,15 +1,17 @@
 'use strict';
 
-var express = require('express'),
-    bodyParser = require('body-parser'),
+var bodyParser = require('body-parser'),
+    config = require('../../config'),
+    express = require('express'),
     expressValidator = require('express-validator'),
-    request = require('request'),
+    moment = require('moment'),
     options = {
-        path: 'https://sandbox-api.opentable.co.uk/v1/restaurants/',
+        path: config.apiPath,
         headers: {
-            'Authorization': 'token ' + process.env.WIDGET_API_KEY
+            'Authorization': config.authToken
         }
     },
+    request = require('request'),
     router = express.Router();
 
 router.use(bodyParser.json());

@@ -2,17 +2,18 @@
 
 require('../utilities/timeCreator');
 
-var express = require('express'),
-    bodyParser = require('body-parser'),
+var bodyParser = require('body-parser'),
+    config = require('../../config'),
+    express = require('express'),
     expressValidator = require('express-validator'),
-    request = require('request'),
     moment = require('moment'),
     options = {
-        path: 'https://sandbox-api.opentable.co.uk/v1/restaurants/',
+        path: config.apiPath,
         headers: {
-            'Authorization': 'token ' + process.env.WIDGET_API_KEY
+            'Authorization': config.authToken
         }
     },
+    request = require('request'),
     router = express.Router();
 
 router.use(bodyParser.json());
@@ -22,13 +23,13 @@ router.use(bodyParser.urlencoded({
 }));
 
 router.post('/:restaurantId', function(req, res){
-    req.checkBody('date', 'reservation date cannot be in the past').isAfter(moment().subtract(1, 'days'));
-    req.checkBody('date', 'reservation date cannot be empty').notEmpty();
-    req.checkBody('timeSelect', 'time slot cannot be empty').notEmpty();
-    req.checkBody('partySize', 'partysize has to be an integer').isInt();
+    req.checkBody('date', config.messages.invalidDate).isAfter(moment().subtract(1, 'days'));
+    req.checkBody('date', config.messages.emptyDate).notEmpty();
+    req.checkBody('timeSelect', config.messages.emptyTime).notEmpty();
+    req.checkBody('partySize', config.messages.invalidPartySize).isInt();
     var errors = req.validationErrors();
     if(errors){
-        res.status(400).send('There have been validation errors');
+        res.status(400).send(config.messages.genericValidationError);
     }
     else {
         var uri = options.path + req.params.restaurantId + '/availability?dateTime=' + req.body.date + req.body.timeSelect + '&partySize=' + req.body.partySize,
