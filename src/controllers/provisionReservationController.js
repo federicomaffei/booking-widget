@@ -38,7 +38,7 @@ router.post('/:restaurantId', function(req, res){
         }
         else {
             res.render('provision-error', {
-                provisionMessage: response.body.message,
+                provisionErrorMessage: response.body.message,
                 responseBody: JSON.stringify(body, undefined, 2),
                 responseStatus: response.statusCode
             });

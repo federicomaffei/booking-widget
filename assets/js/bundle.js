@@ -1,4 +1,31 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+module.exports=[
+  {
+    "id": 1,
+    "name": "Always available"
+  },
+  {
+    "id": 2,
+    "name": "Less available"
+  },
+  {
+    "id": 4,
+    "name": "Never available"
+  },
+  {
+    "id": 9,
+    "name": "Another reservation in place"
+  },
+  {
+    "id": 10,
+    "name": "Slot not available after search"
+  },
+  {
+    "id": 11,
+    "name": "Slot not available after provision"
+  }
+]
+},{}],2:[function(require,module,exports){
 (function (global){
 //! moment.js
 //! version : 2.9.0
@@ -3045,9 +3072,10 @@
 }).call(this);
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],2:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 var tc = require('./timeCreator');
 var moment = require('moment');
+var restaurants = require('../../config/restaurants.json');
 
 function addSlotsToOptions(slots){
     for(var index = 0; index < slots.length; index++){
@@ -3096,7 +3124,7 @@ $(document).ready(function() {
         showOtherMonths: true,
         dayNamesMin: ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'],
         onSelect: function(dateText) {
-            $('#date-field').empty().append(moment(dateText).format('MMM Do YYYY') + '<i class="fa fa-angle-down select-arrow"></i>');
+            $('#date-field').empty().append(moment(dateText).format('MMM Do YYYY'));
             $('#timepicker').empty();
             var slots = tc.createSlots(tc.setStart(dateText, 22));
             addSlotsToOptions(slots);
@@ -3105,15 +3133,18 @@ $(document).ready(function() {
     });
 
     $('#partypicker').change(function() {
-        $('#party-field').empty().append($('#partypicker option:selected').text() + '<i class="fa fa-angle-down select-arrow"></i>');
+        $('#party-field').empty().append($('#partypicker option:selected').text());
     });
 
     $('#timepicker').change(function() {
-        $('#time-field').empty().append($('#timepicker option:selected').text() + '<i class="fa fa-angle-down select-arrow"></i>');
+        $('#time-field').empty().append($('#timepicker option:selected').text());
     });
 
     $('#restaurantpicker').change(function() {
-        $('#restaurant-field').empty().append('Restaurant ' + $('#restaurantpicker option:selected').text() + '<i class="fa fa-angle-down select-arrow"></i>');
+        var restaurantName = $.grep(restaurants, function(restaurant){
+            return restaurant.id == $('#restaurantpicker option:selected').val()
+        });
+        $('#restaurant-field').empty().append(restaurantName[0].name);
     });
 
     $('#show-response-button').click(function(){
@@ -3140,7 +3171,7 @@ $(document).ready(function() {
     $('#time-field').append(tc.convertTime(slots[0]));
     addSlotsToOptions(slots);
 });
-},{"./timeCreator":3,"moment":1}],3:[function(require,module,exports){
+},{"../../config/restaurants.json":1,"./timeCreator":4,"moment":2}],4:[function(require,module,exports){
 'use strict';
 
 var moment = require('moment');
@@ -3193,4 +3224,4 @@ module.exports.createSlots = function(minTime, maxTime) {
     }
     return times;
 };
-},{"moment":1}]},{},[2]);
+},{"moment":2}]},{},[3]);

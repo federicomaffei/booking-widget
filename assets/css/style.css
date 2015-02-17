@@ -125,17 +125,24 @@ div.offer-box {
 div#availability-list {
     margin-top: 0;
     margin-bottom: 0;
-    padding: 0px 10px 0px 10px;
+    padding: 0 10px 0 10px;
     height: 60%;
+}
+
+div.select-link-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
 }
 
 /*Links*/
 
 a.select-link {
     display: block;
-    position: relative;
-    padding: 1rem;
-    height: 32px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0 15px 0 10px;
     z-index: 1;
     font-weight: 100;
     font-size: 100%;
@@ -155,6 +162,10 @@ a.offers-tip {
 
 a:visited {
     color: black;
+}
+
+a#restaurant-field {
+    font-size: 90%;
 }
 
 /*Datepicker*/
@@ -215,7 +226,7 @@ input#datepicker {
     position: absolute;
     opacity: 0;
     top: 0;
-    z-index: 2;
+    z-index: 3;
     cursor: pointer;
 }
 
@@ -302,6 +313,8 @@ span.link-spanner {
 i.select-arrow {
     color: #999;
     float: right;
+    padding: 20px 20px 20px 0;
+    z-index: 2;
 }
 
 .ui-tooltip-content {
@@ -327,7 +340,6 @@ thead {
 }
 
 .ui-state-active {
-
     background-color: rgb(218, 55, 67) !important;
     color: #FFF !important;
     border-bottom-left-radius: 100%;
@@ -343,13 +355,13 @@ thead {
 
 .ui-datepicker td span, .ui-datepicker td a {
     text-align: center !important;
-    padding: 0px !important;
+    padding: 0 !important;
 }
 
 .ui-icon-circle-triangle-e {
-    background-position: -35px 0px !important;
+    background-position: -35px 0 !important;
 }
 
 .ui-icon-circle-triangle-w {
-    background-position: -90px 0px !important;
+    background-position: -90px 0 !important;
 }

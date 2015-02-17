@@ -1,5 +1,6 @@
 var tc = require('./timeCreator');
 var moment = require('moment');
+var restaurants = require('../../config/restaurants.json');
 
 function addSlotsToOptions(slots){
     for(var index = 0; index < slots.length; index++){
@@ -48,7 +49,7 @@ $(document).ready(function() {
         showOtherMonths: true,
         dayNamesMin: ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'],
         onSelect: function(dateText) {
-            $('#date-field').empty().append(moment(dateText).format('MMM Do YYYY') + '<i class="fa fa-angle-down select-arrow"></i>');
+            $('#date-field').empty().append(moment(dateText).format('MMM Do YYYY'));
             $('#timepicker').empty();
             var slots = tc.createSlots(tc.setStart(dateText, 22));
             addSlotsToOptions(slots);
@@ -57,15 +58,18 @@ $(document).ready(function() {
     });
 
     $('#partypicker').change(function() {
-        $('#party-field').empty().append($('#partypicker option:selected').text() + '<i class="fa fa-angle-down select-arrow"></i>');
+        $('#party-field').empty().append($('#partypicker option:selected').text());
     });
 
     $('#timepicker').change(function() {
-        $('#time-field').empty().append($('#timepicker option:selected').text() + '<i class="fa fa-angle-down select-arrow"></i>');
+        $('#time-field').empty().append($('#timepicker option:selected').text());
     });
 
     $('#restaurantpicker').change(function() {
-        $('#restaurant-field').empty().append('Restaurant ' + $('#restaurantpicker option:selected').text() + '<i class="fa fa-angle-down select-arrow"></i>');
+        var restaurantName = $.grep(restaurants, function(restaurant){
+            return restaurant.id == $('#restaurantpicker option:selected').val()
+        });
+        $('#restaurant-field').empty().append(restaurantName[0].name);
     });
 
     $('#show-response-button').click(function(){

@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "Always available"
+  },
+  {
+    "id": 2,
+    "name": "Less available"
+  },
+  {
+    "id": 4,
+    "name": "Never available"
+  },
+  {
+    "id": 9,
+    "name": "Another reservation in place"
+  },
+  {
+    "id": 10,
+    "name": "Slot not available after search"
+  },
+  {
+    "id": 11,
+    "name": "Slot not available after provision"
+  }
+]

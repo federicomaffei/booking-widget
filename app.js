@@ -7,6 +7,7 @@ var express = require('express'),
 dotenv.load();
 app.locals.moment = require('moment');
 app.locals.timeCreator = require('./src/utilities/timeCreator');
+app.locals.restaurants = require('./config/restaurants.json');
 
 app.set('view engine', 'jade');
 

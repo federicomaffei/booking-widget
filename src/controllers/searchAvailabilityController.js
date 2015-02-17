@@ -37,12 +37,21 @@ router.post('/:restaurantId', function(req, res){
             headers: options.headers,
             json: true
         }, function(error, response, body){
-            res.render('search-availability', {
-                results: body.results,
-                request: req.body,
-                responseBody: JSON.stringify(body, undefined, 2),
-                responseStatus: response.statusCode,
-                id: req.params.restaurantId });
+            if(response.body.message) {
+                res.render('availability-error', {
+                    availabilityErrorMessage: response.body.message,
+                    responseBody: JSON.stringify(body, undefined, 2),
+                    responseStatus: response.statusCode
+                });
+            }
+            else {
+                res.render('search-availability', {
+                    results: body.results,
+                    request: req.body,
+                    responseBody: JSON.stringify(body, undefined, 2),
+                    responseStatus: response.statusCode,
+                    id: req.params.restaurantId });
+            }
         });
     }
 });
