@@ -28,9 +28,11 @@ router.post('/:restaurantId', function(req, res){
         res.status(400).send('There have been validation errors');
     }
     else {
+        var uri = options.path + req.params.restaurantId + '/reservations/provisional/' + req.body.reservationToken + '/confirm',
+            method = 'POST';
         request({
-            uri: options.path + req.params.restaurantId + '/reservations/provisional/' + req.body.reservationToken + '/confirm',
-            method: 'POST',
+            uri: uri,
+            method: method,
             headers: options.headers,
             body: req.body,
             json: true
@@ -38,17 +40,23 @@ router.post('/:restaurantId', function(req, res){
             if (response.statusCode === 201) {
                 res.render('confirm-reservation', {
                     reservationToken: body.reservationToken,
-                    id: req.params.restaurantId,
                     confirmationMessage: response.body.message,
                     responseBody: JSON.stringify(body, undefined, 2),
-                    responseStatus: response.statusCode
+                    responseStatus: response.statusCode,
+                    requestMethod: method,
+                    requestPath: uri,
+                    requestHeaders: JSON.stringify(options.headers, undefined, 2),
+                    id: req.params.restaurantId
                 });
             }
             else {
                 res.render('confirm-error', {
                     confirmationMessage: response.body.message,
                     responseBody: JSON.stringify(body, undefined, 2),
-                    responseStatus: response.statusCode
+                    responseStatus: response.statusCode,
+                    requestMethod: method,
+                    requestPath: uri,
+                    requestHeaders: JSON.stringify(options.headers, undefined, 2),
                 });
             }
         });

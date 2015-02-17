@@ -17,12 +17,20 @@ block content
             input(class='confirmation-field', type='tel', name='phoneNumber', id='phone', placeholder='phone number')
             input(type='submit', class='button', id='confirmation-button', value='Confirm your table')
         div#button-container
-            input(type='button', class='form-button', id='show-response-button', value='Show the response')
-            input(type='button', class='form-button', id='hide-response-button', value='Hide the response')
+            input(type='button', class='form-button', id='show-response-button', value='Show request and response')
+            input(type='button', class='form-button', id='hide-response-button', value='Hide request and response')
 block preview
     div#preview-container
         div#preview-header
         div#preview-content
+            span The widget has sent this request:
+            pre(class='preview-paragraph')
+                code
+                    p #{requestMethod}
+                    p #{requestPath}
+                    p Auth token:
+                    p #{requestHeaders}
+            span The API has returned a response with status code #{responseStatus} and body:
             pre
-                code(class='json response-paragraph') The API has returned a response with status code #{responseStatus} and body:
-                    p(class='response-paragraph') #{responseBody}
+                code
+                    p #{responseBody}

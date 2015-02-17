@@ -31,9 +31,11 @@ router.post('/:restaurantId', function(req, res){
         res.status(400).send('There have been validation errors');
     }
     else {
+        var uri = options.path + req.params.restaurantId + '/availability?dateTime=' + req.body.date + req.body.timeSelect + '&partySize=' + req.body.partySize,
+            method = 'GET';
         request({
-            uri: options.path + req.params.restaurantId + '/availability?dateTime=' + req.body.date + req.body.timeSelect + '&partySize=' + req.body.partySize,
-            method: 'GET',
+            uri: uri,
+            method: method,
             headers: options.headers,
             json: true
         }, function(error, response, body){
@@ -41,15 +43,20 @@ router.post('/:restaurantId', function(req, res){
                 res.render('availability-error', {
                     availabilityErrorMessage: response.body.message,
                     responseBody: JSON.stringify(body, undefined, 2),
-                    responseStatus: response.statusCode
+                    responseStatus: response.statusCode,
+                    requestMethod: method,
+                    requestPath: uri,
+                    requestHeaders: JSON.stringify(options.headers, undefined, 2)
                 });
             }
             else {
                 res.render('search-availability', {
                     results: body.results,
-                    request: req.body,
                     responseBody: JSON.stringify(body, undefined, 2),
                     responseStatus: response.statusCode,
+                    requestMethod: method,
+                    requestPath: uri,
+                    requestHeaders: JSON.stringify(options.headers, undefined, 2),
                     id: req.params.restaurantId });
             }
         });

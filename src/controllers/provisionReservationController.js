@@ -20,9 +20,11 @@ router.use(bodyParser.urlencoded({
 
 router.post('/:restaurantId', function(req, res){
     req.body.partySize = parseInt(req.body.partySize);
+    var uri = options.path + req.params.restaurantId + '/reservations',
+        method = 'POST';
     request({
-        uri: options.path + req.params.restaurantId + '/reservations',
-        method: 'POST',
+        uri: uri,
+        method: method,
         headers: options.headers,
         body: req.body,
         json: true
@@ -30,17 +32,23 @@ router.post('/:restaurantId', function(req, res){
         if(response.statusCode === 201){
             res.render('provision-reservation', {
                 reservationToken: body.reservationToken,
-                id: req.params.restaurantId,
                 provisionMessage: response.body.message,
                 responseBody: JSON.stringify(body, undefined, 2),
-                responseStatus: response.statusCode
+                responseStatus: response.statusCode,
+                requestMethod: method,
+                requestPath: uri,
+                requestHeaders: JSON.stringify(options.headers, undefined, 2),
+                id: req.params.restaurantId
             });
         }
         else {
             res.render('provision-error', {
                 provisionErrorMessage: response.body.message,
                 responseBody: JSON.stringify(body, undefined, 2),
-                responseStatus: response.statusCode
+                responseStatus: response.statusCode,
+                requestMethod: method,
+                requestPath: uri,
+                requestHeaders: JSON.stringify(options.headers, undefined, 2)
             });
         }
     });
