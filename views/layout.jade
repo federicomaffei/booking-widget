@@ -16,6 +16,16 @@ html
         script(src="//code.jquery.com/ui/1.11.2/jquery-ui.js")
         script(src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js")
         script(src='/js/bundle.js')
+        script.
+            var _prum = [['id', '54ede38dabe53dc1381a4b06'],
+                ['mark', 'firstbyte', (new Date()).getTime()]];
+            (function () {
+                var s = document.getElementsByTagName('script')[0]
+                        , p = document.createElement('script');
+                p.async = 'async';
+                p.src = '//rum-static.pingdom.net/prum.min.js';
+                s.parentNode.insertBefore(p, s);
+            })();
     body
         section#app-container
                 block content
