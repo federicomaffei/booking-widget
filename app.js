@@ -3,6 +3,7 @@
 var express = require('express'),
     dotenv = require('dotenv'),
     favicon = require('serve-favicon'),
+    newrelic = require('newrelic'),
     app = express();
 
 dotenv.load();
